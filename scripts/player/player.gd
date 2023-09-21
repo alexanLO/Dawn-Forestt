@@ -22,7 +22,7 @@ func _physics_process(delta: float):
 	#o personagem, a vantagem é que além de movimentar o personagem, ele vai slidar. Slide faz com que ele se movimente
 	#e quando ele encontrar uma colisão dependendo dos parâmetros ele vai executar determinadas ações, se não 
 	#especificar um parâmetro quando ele encontrar uma colisão ele vai parar.
-	velocity = move_and_slide(velocity)
+	velocity = move_and_slide(velocity, Vector2.UP) #Vector2.UP defini onde é o chão e o teto
 	player_sprite.animate(velocity)
 	
 func horizontal_moviment_env() -> void:
