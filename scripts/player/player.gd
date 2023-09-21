@@ -9,6 +9,7 @@ export(int) var speed
 
 #Godot recomenda usar essa funcão para objetos que usam a física. Funções proprias da godot não precisa especificar
 #se é void ou não.
+# warning-ignore:unused_argument
 func _physics_process(delta: float):
 	horizontal_moviment_env()
 	#Esse é um metódo do KinematicBody que aplica uma velocidade linear ao objeto e apartir disso ele vai movimentar 
@@ -16,6 +17,7 @@ func _physics_process(delta: float):
 	#e quando ele encontrar uma colisão dependendo dos parâmetros ele vai executar determinadas ações, se não 
 	#especificar um parâmetro quando ele encontrar uma colisão ele vai parar.
 	velocity = move_and_slide(velocity)
+	player_sprite.animate(velocity)
 	
 func horizontal_moviment_env() -> void:
 	#Vai retorna qual é a direção. Se for pra esquerda é -1, se for para a direita é 1 e se pressionar

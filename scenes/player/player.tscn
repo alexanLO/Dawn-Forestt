@@ -1,12 +1,13 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Dawn-Forest/assets/player/char_green.png" type="Texture" id=1]
 [ext_resource path="res://Dawn-Forest/scripts/player/player.gd" type="Script" id=2]
+[ext_resource path="res://Dawn-Forest/scripts/player/playerTexture.gd" type="Script" id=3]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Texture:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -22,7 +23,7 @@ tracks/0/keys = {
 resource_name = "idle"
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Texture:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -39,7 +40,7 @@ resource_name = "run"
 length = 0.8
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Texture:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -57,12 +58,14 @@ speed = 75
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Texture" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 hframes = 8
 vframes = 11
+script = ExtResource( 3 )
+animation = NodePath("../Animation")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="Animation" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 1 )
 anims/idle = SubResource( 2 )
 anims/run = SubResource( 3 )
