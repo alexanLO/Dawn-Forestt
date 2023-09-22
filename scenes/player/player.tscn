@@ -355,6 +355,7 @@ drag_margin_v_enabled = true
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="Collision" type="CollisionShape2D" parent="Area2D"]
+visible = false
 shape = SubResource( 8 )
 
 [connection signal="animation_finished" from="Animation" to="Texture" method="_on_Animation_animation_finished"]

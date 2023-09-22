@@ -5,7 +5,15 @@ onready var player_sprite: Sprite = get_node("Texture")
 
 var velocity: Vector2 #Ele guarda dois valores (x, y)
 var jump_count: int = 0
+
 var landing: bool = false
+var attacking: bool = false
+var defending: bool = false
+var crouching: bool = false
+
+#Essa variável vai auxiliar no código para quando ela estiver na ação de attack, defese ou croach o personagem não
+#vai poder pular e movimentação horizontal.
+var can_track_input: bool = true 
 
 export(int) var jump_speed
 export(int) var player_gravity
@@ -18,6 +26,7 @@ func _physics_process(delta: float):
 	horizontal_moviment_env()
 	vertical_moviment_env()
 	gravity(delta)
+	actions_env()
 	#Esse é um metódo do KinematicBody que aplica uma velocidade linear ao objeto e apartir disso ele vai movimentar 
 	#o personagem, a vantagem é que além de movimentar o personagem, ele vai slidar. Slide faz com que ele se movimente
 	#e quando ele encontrar uma colisão dependendo dos parâmetros ele vai executar determinadas ações, se não 
@@ -41,6 +50,34 @@ func vertical_moviment_env() -> void:
 	if Input.is_action_just_pressed("ui_select") and jump_count < 2:
 		jump_count += 1
 		velocity.y = jump_speed
+
+func actions_env() -> void:
+	attack()
+	defense()
+	crouch()
+
+func attack() -> void:
+	var attack_condition: bool = not attacking and not defending and not croaching
+	#Is_on_floor entra no If para o personagem só poder atacar quando estiver no chão.
+	if Input.is_action_just_pressed("attack") and attack_condition and is_on_floor(): 
+		attacking = true
+
+func defense() -> void:
+	if Input.is_action_pressed("defense") and is_on_floor() and not crouching:
+		defending = true
+		can_track_input = false
+	elif not crouching:
+		defending = false
+		can_track_input = true
+
+func crouch() -> void:
+	if Input.is_action_pressed("crouch") and is_on_floor() and not defending:
+		crouching = true
+		can_track_input = false
+	elif not defending:
+		crouching = false
+		can_track_input = true
+
 
 #Aplicando a velocidade em y, delta e valor de gravidade a cada frame.
 func gravity(delta: float) -> void:
