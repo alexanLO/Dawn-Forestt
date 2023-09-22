@@ -38,6 +38,8 @@ func horizontal_moviment_env() -> void:
 	#Vai retorna qual é a direção. Se for pra esquerda é -1, se for para a direita é 1 e se pressionar
 	#os dois ou nenhum vai ser 0.
 	var input_direction: float = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+	if can_track_input == false or attacking:
+		velocity.x = 0
 	velocity.x = input_direction * speed
 
 func vertical_moviment_env() -> void:
@@ -47,7 +49,8 @@ func vertical_moviment_env() -> void:
 		jump_count = 0
 	#Essa condição faz o jogador das 2 pulos e ele analisa se a pessoa aperta o espaço e segurar ou
 	#aperta rapidamente ele faça apenas uma vez a ação.
-	if Input.is_action_just_pressed("ui_select") and jump_count < 2:
+	var jump_condition = can_track_input and not attacking
+	if Input.is_action_just_pressed("ui_select") and jump_count < 2 and jump_condition:
 		jump_count += 1
 		velocity.y = jump_speed
 
@@ -57,10 +60,11 @@ func actions_env() -> void:
 	crouch()
 
 func attack() -> void:
-	var attack_condition: bool = not attacking and not defending and not croaching
+	var attack_condition: bool = not attacking and not defending and not crouching
 	#Is_on_floor entra no If para o personagem só poder atacar quando estiver no chão.
 	if Input.is_action_just_pressed("attack") and attack_condition and is_on_floor(): 
 		attacking = true
+		player_sprite.normal_attack = true
 
 func defense() -> void:
 	if Input.is_action_pressed("defense") and is_on_floor() and not crouching:
@@ -69,6 +73,7 @@ func defense() -> void:
 	elif not crouching:
 		defending = false
 		can_track_input = true
+		player_sprite.defending_off = true
 
 func crouch() -> void:
 	if Input.is_action_pressed("crouch") and is_on_floor() and not defending:
@@ -77,6 +82,7 @@ func crouch() -> void:
 	elif not defending:
 		crouching = false
 		can_track_input = true
+		player_sprite.crouching_off = true
 
 
 #Aplicando a velocidade em y, delta e valor de gravidade a cada frame.
