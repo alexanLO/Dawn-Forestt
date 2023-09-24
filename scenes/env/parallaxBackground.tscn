@@ -47,5 +47,4 @@ margin_bottom = 40.0
 texture = ExtResource( 3 )
 
 [node name="mask" type="CanvasModulate" parent="."]
-visible = false
 color = Color( 0.494118, 0.494118, 0.494118, 1 )

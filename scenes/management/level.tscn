@@ -28,11 +28,10 @@ cell_size = Vector2( 16, 16 )
 format = 1
 tile_data = PoolIntArray( 589824, 2, 0, 589827, 2, 0, 589834, 2, 0, 589835, 1, 0, 589839, 1, 0, 589842, 1, 0, 589850, 1, 0, 589854, 0, 0, 589856, 1, 0, 589858, 2, 0, 589860, 0, 0, 983082, 1, 0, 983084, 2, 0, 983086, 0, 0 )
 
-[node name="mask" type="CanvasModulate" parent="LevelDesign"]
-visible = false
-color = Color( 0.494118, 0.494118, 0.494118, 1 )
-
 [node name="ParallaxBackground" parent="." instance=ExtResource( 4 )]
+
+[node name="mask" type="CanvasModulate" parent="."]
+color = Color( 0.494118, 0.494118, 0.494118, 1 )
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
 position = Vector2( 43, 45 )
