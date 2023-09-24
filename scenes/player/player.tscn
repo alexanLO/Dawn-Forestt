@@ -443,6 +443,7 @@ cast_to = Vector2( 11, 0 )
 [node name="Light2D" type="Light2D" parent="."]
 texture = ExtResource( 4 )
 texture_scale = 0.3
+color = Color( 1, 1, 1.7, 1 )
 energy = 0.8
 
 [node name="Animation" type="AnimationPlayer" parent="Light2D"]
