@@ -336,7 +336,10 @@ tracks/0/keys = {
 script = ExtResource( 2 )
 jump_speed = -175
 speed = 75
+wall_jump_speed = -150
 player_gravity = 350
+wall_gravity = 115
+wall_impulse_speed = 500
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 visible = false
@@ -376,7 +379,7 @@ drag_margin_v_enabled = true
 visible = false
 shape = SubResource( 8 )
 
-[node name="Wallray" type="RayCast2D" parent="Area2D"]
+[node name="Wallray" type="RayCast2D" parent="."]
 enabled = true
 cast_to = Vector2( 11, 0 )
 

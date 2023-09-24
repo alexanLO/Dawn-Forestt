@@ -2,7 +2,7 @@ extends KinematicBody2D
 class_name Player
 
 onready var player_sprite: Sprite = get_node("Texture")
-onready var wall_ray: RayCast2D = get_node("wallRay")
+onready var wall_ray: RayCast2D = get_node("Wallray")
 
 var velocity: Vector2 #Ele guarda dois valores (x, y)
 var jump_count: int = 0
@@ -103,7 +103,7 @@ func gravity(delta: float) -> void:
 	if next_to_wall() :
 		velocity.y += delta * wall_gravity
 		if velocity.y >= wall_gravity:
-			velocity = wall_gravity
+			velocity.y = wall_gravity
 	else:
 		velocity.y += delta*player_gravity
 		#Limitador de velocidade de queda na vertical.
