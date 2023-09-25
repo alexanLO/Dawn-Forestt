@@ -45,4 +45,15 @@ func _ready() -> void:
 	
 	current_mana = base_mana + bonus_mana
 	max_mana = current_mana
-	
+
+func update_exp(value: int) -> void:
+	current_exp += value
+	if current_exp >= level_dict[str(level)] and level < 9:
+		var leftover: int = current_exp - level_dict[str(level)]
+		current_exp = leftover
+		level += 1
+		on_level_up()
+
+func on_level_up() -> void:
+	current_health = base_health + bonus_health
+	current_mana = base_mana + bonus_mana
