@@ -1,6 +1,7 @@
 extends Node
 class_name PlayerStats
 
+export(NodePath) onready var player = get_node(player) as KinematicBody2D 
 
 var shielding: bool = false
 
@@ -67,9 +68,10 @@ func update_health(type: String, value: int) -> void:
 		"Decrease":
 			verify_shield(value)
 			if current_health <= 0:
-				pass #Chamar a animação de morte.
+				player.dead = true
 			else:
-				pass #Chamar animação de tomar dano.
+				player.on_hit = true
+				player.attacking = false
 
 func verify_shield(value: int) -> void:
 	if shielding:

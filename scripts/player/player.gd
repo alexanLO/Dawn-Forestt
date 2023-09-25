@@ -3,17 +3,20 @@ class_name Player
 
 onready var player_sprite: Sprite = get_node("Texture")
 onready var wall_ray: RayCast2D = get_node("Wallray")
+onready var stats: Node = get_node("Stats")
 
 var velocity: Vector2 #Ele guarda dois valores (x, y)
+
 var jump_count: int = 0
+var direction: int = 1
 
 var landing: bool = false
 var on_wall: bool = false
 var attacking: bool = false
 var defending: bool = false
 var crouching: bool = false
-var direction: int = 1
-
+var on_hit: bool = false
+var dead: bool = false
 #Essa variável vai auxiliar no código para quando ela estiver na ação de attack, defese ou croach o personagem não
 #vai poder pular e movimentação horizontal.
 var can_track_input: bool = true 
@@ -82,19 +85,23 @@ func attack() -> void:
 func defense() -> void:
 	if Input.is_action_pressed("defense") and is_on_floor() and not crouching:
 		defending = true
+		stats.shielding = true
 		can_track_input = false
 	elif not crouching:
 		defending = false
 		can_track_input = true
+		stats.shielding = false
 		player_sprite.defending_off = true
 
 func crouch() -> void:
 	if Input.is_action_pressed("crouch") and is_on_floor() and not defending:
 		crouching = true
+		stats.shielding = false
 		can_track_input = false
 	elif not defending:
 		crouching = false
 		can_track_input = true
+		stats.shielding = false
 		player_sprite.crouching_off = true
 
 
