@@ -443,6 +443,7 @@ vframes = 11
 script = ExtResource( 3 )
 animation = NodePath("../Animation")
 player = NodePath("..")
+attack_collision = NodePath("../Area2D/Collision")
 
 [node name="Animation" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 1 )

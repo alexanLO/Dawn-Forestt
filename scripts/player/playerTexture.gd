@@ -8,11 +8,14 @@ var sufflix: String = "_right"
 
 export(NodePath) onready var animation = get_node(animation) as AnimationPlayer
 export(NodePath) onready var player = get_node(player) as KinematicBody2D
+export(NodePath) onready var attack_collision = get_node(attack_collision) as CollisionShape2D
 
 func animate(direction: Vector2) -> void:
 	verify_position(direction)
 	
-	if player.attacking or player.defending or player.crouching or player.next_to_wall():
+	if player.on_hit or player.dead:
+		hit_behavior()
+	elif player.attacking or player.defending or player.crouching or player.next_to_wall():
 		action_behavior()
 	elif direction.y != 0:
 		vertical_behavior(direction)
@@ -36,6 +39,14 @@ func verify_position(direction: Vector2) -> void:
 		player.direction = 1 #Força para sair da parede, ela tem que ser inversa da direção olhando.
 		position = Vector2(-2, 0) #wall slide directio
 		player.wall_ray.cast_to = Vector2(-7.5, 0)
+
+func hit_behavior() -> void:
+	player.set_physics_process(false)
+	attack_collision.set_deferred("disabled", true)
+	if player.dead:
+		animation.play("dead")
+	elif player.on_hit:
+		animation.play("hit")
 
 func action_behavior() -> void:
 	if player.next_to_wall():
@@ -75,3 +86,10 @@ func _on_Animation_animation_finished(anim_name: String):
 		"attack_right":
 			normal_attack = false
 			player.attacking = false
+		"hit":
+			player.on_hit = false
+			player.set_physics_process(true)
+			if player.defending:
+				animation.play("defense")
+			if player.crouching:
+				animation.play("crouch")
