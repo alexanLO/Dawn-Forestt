@@ -100,9 +100,9 @@ func update_mana(type: String, value: int) -> void:
 
 
 #código apenas para testar o dano test
-func _process(_delta) -> void:
-	if Input.is_action_just_pressed("ui_select"):
-		update_health("Decrease", 5)
+#func _process(_delta) -> void:
+#	if Input.is_action_just_pressed("ui_select"):
+#		update_health("Decrease", 5)
 
 
 func _on_CollisionArea_area_entered(area) -> void:
