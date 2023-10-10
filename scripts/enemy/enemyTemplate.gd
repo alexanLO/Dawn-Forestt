@@ -59,3 +59,6 @@ func verify_position() -> void:
 			texture.flip_h = false
 			#Como o valor já [e negativo não precisa passar o abs() para torna positivo
 			floor_ray.position.x = raycast_default_position 
+
+func kill_enemy() -> void:
+	animation.play("kill")
