@@ -1,4 +1,4 @@
-extends EnemyTexture #Isso não da problema porque EnemyTexture herda de Sprite que é do mesmo tipo.
+extends EnemyTexture 
 class_name WhaleTexture
 
 func animate(velocity: Vector2) -> void:

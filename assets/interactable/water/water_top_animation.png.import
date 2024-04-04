@@ -1,35 +1,34 @@
 [remap]
 
 importer="texture"
-type="StreamTexture"
-path="res://.import/water_top_animation.png-56594ad7bcae211cdd242ad4df64bfc7.stex"
+type="CompressedTexture2D"
+uid="uid://ca34le0il8fxi"
+path="res://.godot/imported/water_top_animation.png-ecf8def3991d972bad55eadf9792ff00.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Dawn-Forest/assets/interactable/water/water_top_animation.png"
-dest_files=[ "res://.import/water_top_animation.png-56594ad7bcae211cdd242ad4df64bfc7.stex" ]
+source_file="res://assets/interactable/water/water_top_animation.png"
+dest_files=["res://.godot/imported/water_top_animation.png-ecf8def3991d972bad55eadf9792ff00.ctex"]
 
 [params]
 
 compress/mode=0
+compress/high_quality=false
 compress/lossy_quality=0.7
-compress/hdr_mode=0
-compress/bptc_ldr=0
+compress/hdr_compression=1
 compress/normal_map=0
-flags/repeat=0
-flags/filter=false
-flags/mipmaps=false
-flags/anisotropic=false
-flags/srgb=2
+compress/channel_pack=0
+mipmaps/generate=false
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
 process/fix_alpha_border=true
 process/premult_alpha=false
-process/HDR_as_SRGB=false
-process/invert_color=false
 process/normal_map_invert_y=false
-stream=false
-size_limit=0
-detect_3d=false
-svg/scale=1.0
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=1

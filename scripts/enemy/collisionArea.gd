@@ -1,11 +1,11 @@
 extends Area2D
 class_name CollisionArea
 
-onready var timer: Timer = get_node("Timer")
+#@export var timer: Timer
 
-export(int) var health
-export(float) var invunerability_timer
-export(NodePath) onready var enemy = get_node(enemy) as KinematicBody2D
+@export var health: int
+@export var invunerability_timer: Timer
+@export var enemy: EnemyTemplate
 
 func _on_CollisionArea_area_entered(area):
 	if area.get_parent() is Player:

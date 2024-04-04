@@ -1,28 +1,28 @@
-extends KinematicBody2D
+extends CharacterBody2D
 class_name EnemyTemplate
 
-onready var texture: Sprite = get_node("Texture")
-onready var floor_ray: RayCast2D = get_node("FloorRay")
-onready var animation: AnimationPlayer = get_node("Animation")
+@export var texture: EnemyTexture
+@export var floor_ray: RayCast2D 
+@export var animation: AnimationPlayer
 
 var can_die: bool = false
 var can_hit: bool = false
 var can_attack: bool = false
 
-var velocity: Vector2
 var player_ref: Player = null
 
-export(int) var speed
-export(int) var gravity_speed
-export(int) var proximity_threshold #Essa variavel vai ajuda ao inimigo parar de perseguir o player e fazer o attack.
-export(int) var raycast_default_position
+@export var speed: int
+@export var gravity_speed: int
+#Essa variavel vai ajuda ao inimigo parar de perseguir o player e fazer o attack:
+@export var proximity_threshold: int 
+@export var raycast_default_position: int
 
 func _physics_process(delta: float) -> void:
 	gravity(delta)
 	move_behavior()
 	verify_position()
 	texture.animate(velocity)
-	velocity = move_and_slide(velocity, Vector2.UP)
+	move_and_slide()
 
 func gravity(delta: float) -> void:
 	velocity.y = delta * gravity_speed

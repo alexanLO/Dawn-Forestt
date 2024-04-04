@@ -1,9 +1,8 @@
 extends ParallaxBackground
 class_name Background
 
-export(bool) var can_process
-export(Array, int) var layer_speed
-
+@export var can_process: bool
+@export var layer_speed: Array[int]
 
 func _ready():
 	if can_process == false:

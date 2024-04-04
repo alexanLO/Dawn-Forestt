@@ -1,7 +1,7 @@
 extends Area2D
 class_name DetectionArea
 
-export(NodePath) onready var enemy = get_node(enemy) as KinematicBody2D
+@export var enemy: EnemyTemplate
 
 func _on_body_entered(body: Player) -> void:
 	enemy.player_ref = body

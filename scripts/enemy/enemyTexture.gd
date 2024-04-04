@@ -1,15 +1,12 @@
-extends Sprite
+extends Sprite2D
 class_name EnemyTexture
 
-export(NodePath) onready var animation = get_node(animation) as AnimationPlayer
-export(NodePath) onready var enemy = get_node(enemy) as KinematicBody2D
-export(NodePath) onready var attack_area_collision = get_node(attack_area_collision) as CollisionShape2D
+@export var animation: AnimationPlayer
+@export var enemy: EnemyTemplate
+@export var attack_area_collision: CollisionShape2D
 
 func animate(_velocity: Vector2) -> void:
 	pass
-
-
-
 
 func _on_Animation_animation_finished(_anim_name):
 	pass 

@@ -1,11 +1,9 @@
-extends KinematicBody2D
+extends CharacterBody2D
 class_name Player
 
-onready var player_sprite: Sprite = get_node("Texture")
-onready var wall_ray: RayCast2D = get_node("Wallray")
-onready var stats: Node = get_node("Stats")
-
-var velocity: Vector2 #Ele guarda dois valores (x, y)
+@export var texture: PlayerTexture
+@export var wall_ray: RayCast2D 
+@export var stats: Stats 
 
 var jump_count: int = 0
 var direction: int = 1
@@ -22,17 +20,16 @@ var dead: bool = false
 var can_track_input: bool = true 
 var not_on_wall: bool = true
 
-export(int) var jump_speed
-export(int) var speed
-export(int) var wall_jump_speed
-export(int) var player_gravity
-export(int) var wall_gravity
-export(int) var wall_impulse_speed
+@export var jump_speed: int
+@export var speed: int
+@export var wall_jump_speed: int
+@export var player_gravity: int
+@export var wall_gravity: int
+@export var wall_impulse_speed: int
 
 #Godot recomenda usar essa funcão para objetos que usam a física. Funções proprias da godot não precisa especificar
 #se é void ou não.
-# warning-ignore:unused_argument
-func _physics_process(delta: float):
+func _physics_process(delta: float) -> void:
 	horizontal_moviment_env()
 	vertical_moviment_env()
 	gravity(delta)
@@ -41,13 +38,13 @@ func _physics_process(delta: float):
 	#o personagem, a vantagem é que além de movimentar o personagem, ele vai slidar. Slide faz com que ele se movimente
 	#e quando ele encontrar uma colisão dependendo dos parâmetros ele vai executar determinadas ações, se não 
 	#especificar um parâmetro quando ele encontrar uma colisão ele vai parar.
-	velocity = move_and_slide(velocity, Vector2.UP) #Vector2.UP defini onde é o chão e o teto
-	player_sprite.animate(velocity)
+	move_and_slide()
+	texture.animate(velocity)
 	
 func horizontal_moviment_env() -> void:
 	#Vai retorna qual é a direção. Se for pra esquerda é -1, se for para a direita é 1 e se pressionar
 	#os dois ou nenhum vai ser 0.
-	var input_direction: float = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+	var input_direction: float = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	if can_track_input == false or attacking:
 		velocity.x = 0
 		return
@@ -62,7 +59,7 @@ func vertical_moviment_env() -> void:
 	#Essa condição faz o jogador das 2 pulos e ele analisa se a pessoa aperta o espaço e segurar ou
 	#aperta rapidamente ele faça apenas uma vez a ação.
 	var jump_condition = can_track_input and not attacking
-	if Input.is_action_just_pressed("ui_select") and jump_count < 2 and jump_condition:
+	if Input.is_action_just_pressed("jump") and jump_count < 2 and jump_condition:
 		jump_count += 1
 		if next_to_wall() and not is_on_floor():
 			velocity.y = wall_jump_speed
@@ -80,7 +77,7 @@ func attack() -> void:
 	#Is_on_floor entra no If para o personagem só poder atacar quando estiver no chão.
 	if Input.is_action_just_pressed("attack") and attack_condition and is_on_floor(): 
 		attacking = true
-		player_sprite.normal_attack = true
+		texture.normal_attack = true
 
 func defense() -> void:
 	if Input.is_action_pressed("defense") and is_on_floor() and not crouching:
@@ -91,7 +88,7 @@ func defense() -> void:
 		defending = false
 		can_track_input = true
 		stats.shielding = false
-		player_sprite.defending_off = true
+		texture.defending_off = true
 
 func crouch() -> void:
 	if Input.is_action_pressed("crouch") and is_on_floor() and not defending:
@@ -102,7 +99,7 @@ func crouch() -> void:
 		crouching = false
 		can_track_input = true
 		stats.shielding = false
-		player_sprite.crouching_off = true
+		texture.crouching_off = true
 
 
 #Aplicando a velocidade em y, delta e valor de gravidade a cada frame.
