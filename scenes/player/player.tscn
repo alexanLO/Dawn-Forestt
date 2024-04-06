@@ -25,7 +25,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AttackCollision/Collision:shape")
+tracks/1/path = NodePath("AttackArea/Collision:shape")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -37,7 +37,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AttackCollision/Collision:shape:extents")
+tracks/2/path = NodePath("AttackArea/Collision:shape:extents")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -49,7 +49,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("AttackCollision/Collision:position")
+tracks/3/path = NodePath("AttackArea/Collision:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -61,7 +61,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("AttackCollision/Collision:disabled")
+tracks/4/path = NodePath("AttackArea/Collision:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -89,7 +89,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AttackCollision/Collision:shape")
+tracks/1/path = NodePath("AttackArea/Collision:shape")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -101,7 +101,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AttackCollision/Collision:shape:extents")
+tracks/2/path = NodePath("AttackArea/Collision:shape:extents")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -113,7 +113,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("AttackCollision/Collision:position")
+tracks/3/path = NodePath("AttackArea/Collision:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -125,7 +125,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("AttackCollision/Collision:disabled")
+tracks/4/path = NodePath("AttackArea/Collision:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -153,7 +153,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AttackCollision/Collision:shape")
+tracks/1/path = NodePath("AttackArea/Collision:shape")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -165,7 +165,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AttackCollision/Collision:shape:extents")
+tracks/2/path = NodePath("AttackArea/Collision:shape:extents")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -177,7 +177,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("AttackCollision/Collision:position")
+tracks/3/path = NodePath("AttackArea/Collision:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -189,7 +189,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("AttackCollision/Collision:disabled")
+tracks/4/path = NodePath("AttackArea/Collision:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -466,12 +466,13 @@ vframes = 11
 script = ExtResource("3")
 animation = NodePath("../Animation")
 player = NodePath("..")
-attack_collision = NodePath("../AttackCollision/Collision")
+attack_collision = NodePath("../AttackArea/Collision")
 
 [node name="Animation" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_c4mnp")
 }
+autoplay = "idle"
 
 [node name="Stats" type="Node" parent="." node_paths=PackedStringArray("player", "collision_area", "invencibility_timer")]
 script = ExtResource("5")
@@ -482,45 +483,43 @@ invencibility_timer = NodePath("InvecibilityTimer")
 [node name="InvecibilityTimer" type="Timer" parent="Stats"]
 one_shot = true
 
+[node name="Wallray" type="RayCast2D" parent="."]
+collision_mask = 3
+
 [node name="Collision" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(-1, 12.5)
 shape = SubResource("7")
-
-[node name="AttackCollision" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 8
-
-[node name="Collision" type="CollisionShape2D" parent="AttackCollision"]
-visible = false
-shape = SubResource("8")
 
 [node name="CollisionArea" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 8
 
 [node name="Collision" type="CollisionShape2D" parent="CollisionArea"]
-visible = false
+position = Vector2(-1, 12.5)
+shape = SubResource("7")
+
+[node name="AttackArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="Collision" type="CollisionShape2D" parent="AttackArea"]
 shape = SubResource("8")
 
-[node name="Wallray" type="RayCast2D" parent="."]
-collision_mask = 3
-
-[node name="Light2D" type="PointLight2D" parent="."]
-color = Color(0.415686, 0.0196078, 0.85098, 0.819608)
+[node name="Light" type="PointLight2D" parent="."]
+color = Color(0.356863, 0.0117647, 0.737255, 1)
 energy = 0.8
 texture = ExtResource("4")
 texture_scale = 0.3
 
-[node name="Animation" type="AnimationPlayer" parent="Light2D"]
+[node name="Animation" type="AnimationPlayer" parent="Light"]
 libraries = {
 "": SubResource("AnimationLibrary_npr65")
 }
 autoplay = "light_animation"
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="LevelCam" type="Camera2D" parent="."]
 limit_top = 0
 
 [connection signal="animation_finished" from="Animation" to="Texture" method="_on_Animation_animation_finished"]
 [connection signal="timeout" from="Stats/InvecibilityTimer" to="Stats" method="_on_InvecibilityTimer_timeout"]
-[connection signal="area_entered" from="CollisionArea" to="Stats" method="_on_CollisionArea_area_entered"]
+[connection signal="area_entered" from="CollisionArea" to="Stats" method="_on_collision_area_entered"]

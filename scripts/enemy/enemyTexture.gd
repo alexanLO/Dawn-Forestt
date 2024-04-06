@@ -8,5 +8,5 @@ class_name EnemyTexture
 func animate(_velocity: Vector2) -> void:
 	pass
 
-func _on_Animation_animation_finished(_anim_name):
-	pass 
+func _on_animation_finished(anim_name):
+	pass # Replace with function body.

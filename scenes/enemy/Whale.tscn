@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ccv55eiorwhkn"]
+[gd_scene load_steps=20 format=3 uid="uid://ccv55eiorwhkn"]
 
 [ext_resource type="PackedScene" uid="uid://b3m0twcdpwd40" path="res://scenes/enemy/enemyTemplate.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://dyr23ud6tm4dm" path="res://assets/enemy/whale/run.png" id="2"]
@@ -6,15 +6,7 @@
 [ext_resource type="Script" path="res://scripts/enemy/whale/texture.gd" id="4"]
 [ext_resource type="Texture2D" uid="uid://bufi0pveo2kkc" path="res://assets/enemy/whale/hit.png" id="5"]
 [ext_resource type="Texture2D" uid="uid://47dm2sosviyd" path="res://assets/enemy/whale/dead.png" id="6"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_h0ter"]
-size = Vector2(64, 40)
-
-[sub_resource type="RectangleShape2D" id="5"]
-size = Vector2(450, 40)
-
-[sub_resource type="RectangleShape2D" id="9"]
-size = Vector2(64, 40)
+[ext_resource type="Texture2D" uid="uid://26u437j5a5k8" path="res://assets/enemy/whale/attack.png" id="7_ftutv"]
 
 [sub_resource type="Animation" id="1"]
 length = 0.001
@@ -69,26 +61,90 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Animation:playback_speed")
+tracks/4/path = NodePath(".:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [1.0]
+"values": [Color(1, 1, 1, 1)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath(".:modulate")
+tracks/5/path = NodePath("Animation:speed_scale")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [1.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("EnemyAttackArea/Collision:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_iao4w"]
+resource_name = "attack"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("7_ftutv")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Texture:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [11]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Texture:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("EnemyAttackArea/Collision:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
 }
 
 [sub_resource type="Animation" id="7"]
@@ -242,7 +298,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Animation:playback_speed")
+tracks/3/path = NodePath("Animation:speed_scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -361,12 +417,25 @@ tracks/2/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6o3qd"]
 _data = {
 "RESET": SubResource("1"),
+"attack": SubResource("Animation_iao4w"),
 "dead": SubResource("7"),
 "hit": SubResource("6"),
 "idle": SubResource("2"),
 "kill": SubResource("10"),
 "run": SubResource("3")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h0ter"]
+size = Vector2(60, 39)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j1ho8"]
+size = Vector2(225, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lilxk"]
+size = Vector2(60, 38.5714)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8qwaa"]
+size = Vector2(51.4286, 40)
 
 [node name="Whale" instance=ExtResource("1")]
 scale = Vector2(0.7, 0.7)
@@ -379,28 +448,41 @@ hframes = 44
 frame = 42
 script = ExtResource("4")
 
-[node name="Collision" parent="." index="1"]
-position = Vector2(0, 2.85714)
-scale = Vector2(1, 1)
-shape = SubResource("RectangleShape2D_h0ter")
-
-[node name="DetectionArea" parent="." index="2"]
-visible = false
-
-[node name="CollisionShape2D" parent="DetectionArea" index="0"]
-position = Vector2(0, 5)
-shape = SubResource("5")
-
-[node name="CollisionShape2D" parent="CollisionArea" index="0"]
-position = Vector2(0, 2.85713)
-scale = Vector2(1, 1)
-shape = SubResource("9")
-
-[node name="Animation" parent="." index="5"]
+[node name="Animation" parent="." index="1"]
 libraries = {
 "": SubResource("AnimationLibrary_6o3qd")
 }
 autoplay = "idle"
 
-[node name="FloorRay" parent="." index="6"]
+[node name="FloorRay" parent="." index="2"]
 position = Vector2(-33, 0)
+target_position = Vector2(0, 30)
+
+[node name="Collision" parent="." index="3"]
+visible = false
+position = Vector2(4.59807e-06, 3.57142)
+shape = SubResource("RectangleShape2D_h0ter")
+
+[node name="Collision" parent="DetectionArea" index="0"]
+position = Vector2(0, 2.85714)
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_j1ho8")
+
+[node name="CollisionArea" parent="." index="5"]
+visible = false
+
+[node name="Collision" parent="CollisionArea" index="0"]
+position = Vector2(0, 3.57143)
+shape = SubResource("RectangleShape2D_lilxk")
+
+[node name="EnemyAttackArea" parent="." index="6"]
+visible = false
+damage = 3
+invencibility_timer = 1.0
+
+[node name="Collision" parent="EnemyAttackArea" index="0"]
+position = Vector2(0, 2.85714)
+shape = SubResource("RectangleShape2D_8qwaa")
+disabled = true
+
+[connection signal="body_entered" from="CollisionArea" to="CollisionArea" method="_on_body_entered"]

@@ -32,14 +32,15 @@ func move_behavior() -> void:
 		var distance: Vector2 = player_ref.global_position - global_position
 		var direction: Vector2 = distance.normalized()
 		if abs(distance.x) <= proximity_threshold:
-			velocity.x = 0 #Para não atacar andando
+			#Para o inimigo não atacar andando:
+			velocity.x = 0 
 			can_attack = true
 		elif floor_collision() and not can_attack:
 			velocity.x = direction.x * speed
 		else:
 			velocity.x = 0
-		
-		return #O return é para não executar nada que estiver embaixo dele.
+		#O return é para não executar nada que estiver embaixo dele:
+		return 
 		
 	velocity.x = 0
 
@@ -51,13 +52,14 @@ func floor_collision() -> bool:
 
 func verify_position() -> void:
 	if player_ref != null:
-		var direction: float = sign(player_ref.global_position.x - global_position.x) #Ele pega o sign do que tem a frente
+		#Ele pega o sign do que tem a frente:
+		var direction: float = sign(player_ref.global_position.x - global_position.x) 
 		if direction > 0:
 			texture.flip_h = true
 			floor_ray.position.x = abs(raycast_default_position)
 		elif direction < 0:
 			texture.flip_h = false
-			#Como o valor já [e negativo não precisa passar o abs() para torna positivo
+			#Como o valor já [e negativo não precisa passar o abs() para torna positivo:
 			floor_ray.position.x = raycast_default_position 
 
 func kill_enemy() -> void:
