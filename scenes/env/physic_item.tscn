@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dqwiahymmaooa"]
+
+[node name="PhysicItem" type="RigidBody2D"]
+
+[node name="Texture" type="Sprite2D" parent="."]
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+
+[node name="IterecationArea" type="Area2D" parent="."]
+
+[node name="Collision" type="CollisionShape2D" parent="IterecationArea"]
+
+[node name="Notifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Light" type="PointLight2D" parent="."]
+color = Color(2, 1, 1, 1)
+energy = 0.5
+texture_scale = 0.2
