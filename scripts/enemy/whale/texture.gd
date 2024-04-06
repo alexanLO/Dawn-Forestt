@@ -1,11 +1,20 @@
 extends EnemyTexture 
 class_name WhaleTexture
 
+#==================== Moviment Animations ====================
+
 func animate(velocity: Vector2) -> void:
 	if enemy.can_hit or enemy.can_die or enemy.can_attack:
 		action_behavior()
 	else:	
 		move_behavior(velocity)
+func move_behavior(velocity: Vector2) -> void:
+	if velocity.x != 0:
+		animation.play("run")
+	else:
+		animation.play("idle")
+
+#==================== Actions Animations ====================
 
 func action_behavior() -> void:
 	if enemy.can_die:
@@ -18,11 +27,7 @@ func action_behavior() -> void:
 	elif enemy.can_attack:
 		animation.play("attack")
 
-func move_behavior(velocity: Vector2) -> void:
-	if velocity.x != 0:
-		animation.play("run")
-	else:
-		animation.play("idle")
+#==================== End Animations ====================
 
 func _on_animation_finished(anim_name):
 	match anim_name:

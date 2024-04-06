@@ -41,6 +41,8 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	texture.animate(velocity)
 	
+#==================== Moviment ====================
+
 func horizontal_moviment_env() -> void:
 	#Vai retorna qual é a direção. Se for pra esquerda é -1, se for para a direita é 1 e se pressionar
 	#os dois ou nenhum vai ser 0:
@@ -66,6 +68,35 @@ func vertical_moviment_env() -> void:
 			velocity.x = wall_impulse_speed * direction
 		else:
 			velocity.y = jump_speed
+
+#Aplicando a velocidade em y, delta e valor de gravidade a cada frame:
+func gravity(delta: float) -> void:
+	if next_to_wall() :
+		velocity.y += delta * wall_gravity
+		if velocity.y >= wall_gravity:
+			velocity.y = wall_gravity
+	else:
+		velocity.y += delta*player_gravity
+		#Limitador de velocidade de queda na vertical:
+		if velocity.y >= player_gravity:
+			velocity.y = player_gravity
+
+func next_to_wall() -> bool:
+	if wall_ray.is_colliding() and not is_on_floor():
+		#Esse condição vai fazer com que quando o personagem pule na parede ele não comece ja deslizar para baixo
+		#ele começa a deslizar para cima porque a força de pulo da vertical pra cima é muito maior que a gravidade pra baixo:
+		if not_on_wall:
+			#Se ele não estava perto da parede posteriormente, então ele vai zerar a velocidade em Y pois dessa forma 
+			#quando o personagem colidir com a parede ele não vai aplicar essa força para cima já que a velocidade 
+			#está zerada em Y. Assim aplicando o deslizamento para baixo:
+			velocity.y = 0
+			not_on_wall = false
+		return true
+	else:
+		not_on_wall = true
+		return false
+		
+#==================== Actions ====================
 
 func actions_env() -> void:
 	attack()
@@ -101,29 +132,3 @@ func crouch() -> void:
 		stats.shielding = false
 		texture.crouching_off = true
 
-#Aplicando a velocidade em y, delta e valor de gravidade a cada frame:
-func gravity(delta: float) -> void:
-	if next_to_wall() :
-		velocity.y += delta * wall_gravity
-		if velocity.y >= wall_gravity:
-			velocity.y = wall_gravity
-	else:
-		velocity.y += delta*player_gravity
-		#Limitador de velocidade de queda na vertical:
-		if velocity.y >= player_gravity:
-			velocity.y = player_gravity
-
-func next_to_wall() -> bool:
-	if wall_ray.is_colliding() and not is_on_floor():
-		#Esse condição vai fazer com que quando o personagem pule na parede ele não comece ja deslizar para baixo
-		#ele começa a deslizar para cima porque a força de pulo da vertical pra cima é muito maior que a gravidade pra baixo:
-		if not_on_wall:
-			#Se ele não estava perto da parede posteriormente, então ele vai zerar a velocidade em Y pois dessa forma 
-			#quando o personagem colidir com a parede ele não vai aplicar essa força para cima já que a velocidade 
-			#está zerada em Y. Assim aplicando o deslizamento para baixo:
-			velocity.y = 0
-			not_on_wall = false
-		return true
-	else:
-		not_on_wall = true
-		return false

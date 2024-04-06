@@ -20,6 +20,7 @@ var drop_list: Dictionary
 @export var proximity_threshold: int 
 @export var raycast_default_position: int
 
+
 func _physics_process(delta: float) -> void:
 	gravity(delta)
 	move_behavior()
@@ -27,8 +28,7 @@ func _physics_process(delta: float) -> void:
 	texture.animate(velocity)
 	move_and_slide()
 
-func gravity(delta: float) -> void:
-	velocity.y = delta * gravity_speed
+#==================== Moviment ==================== 
 
 func move_behavior() -> void:
 	if player_ref != null:
@@ -47,12 +47,6 @@ func move_behavior() -> void:
 		
 	velocity.x = 0
 
-func floor_collision() -> bool:
-	if floor_ray.is_colliding():
-		return true
-		
-	return false
-
 func verify_position() -> void:
 	if player_ref != null:
 		#Ele pega o sign do que tem a frente:
@@ -65,13 +59,25 @@ func verify_position() -> void:
 			#Como o valor já [e negativo não precisa passar o abs() para torna positivo:
 			floor_ray.position.x = raycast_default_position 
 
+func gravity(delta: float) -> void:
+	velocity.y = delta * gravity_speed
+
+func floor_collision() -> bool:
+	if floor_ray.is_colliding():
+		return true
+		
+	return false
+
+#==================== Action ====================
+
 func kill_enemy() -> void:
 	animation.play("kill")
 	spawn_item_probability()
 
 #==================== Drop Item ====================
+
 func spawn_item_probability() -> void:
-	var random_number: int = randi() % 21 #Dado falso
+	var random_number: int = randi() % 21 #Dado falso para teste
 	if random_number <= 6:
 		drop_bonus = 1
 	elif random_number >= 7 and random_number <= 13:
@@ -79,10 +85,12 @@ func spawn_item_probability() -> void:
 	else:
 		drop_bonus = 3
 	
-	#Teste
+	#===== Teste =====
 	print("Multiplicador de drop: " + str(drop_bonus))
+	#==================
+	
 	for key in drop_list.keys():
-		var rng: int = randi() % 100 + 1
+		var rng: int = randi() % 100 + 1 
 		if rng <= drop_list[key][1] * drop_bonus:
 			var item_texture: CompressedTexture2D = load(drop_list[key][0])
 			

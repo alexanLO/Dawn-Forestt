@@ -3,6 +3,7 @@ class_name Level
 
 @export var player: Player
 
+
 func _ready() -> void:
 	var _game_over: bool = player.get_node("Texture").connect("game_over", Callable(self, "on_game_over"))
 
