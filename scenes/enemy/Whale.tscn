@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://ccv55eiorwhkn"]
+[gd_scene load_steps=21 format=3 uid="uid://ccv55eiorwhkn"]
 
 [ext_resource type="PackedScene" uid="uid://b3m0twcdpwd40" path="res://scenes/enemy/enemyTemplate.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://dyr23ud6tm4dm" path="res://assets/enemy/whale/run.png" id="2"]
+[ext_resource type="Script" path="res://scripts/enemy/whale/whale.gd" id="2_fsgdr"]
 [ext_resource type="Texture2D" uid="uid://bd2kdwgqk573n" path="res://assets/enemy/whale/idle.png" id="3"]
 [ext_resource type="Script" path="res://scripts/enemy/whale/texture.gd" id="4"]
 [ext_resource type="Texture2D" uid="uid://bufi0pveo2kkc" path="res://assets/enemy/whale/hit.png" id="5"]
@@ -439,6 +440,7 @@ size = Vector2(51.4286, 40)
 
 [node name="Whale" instance=ExtResource("1")]
 scale = Vector2(0.7, 0.7)
+script = ExtResource("2_fsgdr")
 proximity_threshold = 15
 raycast_default_position = -33
 

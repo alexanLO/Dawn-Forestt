@@ -10,6 +10,7 @@ var can_hit: bool = false
 var can_attack: bool = false
 
 var player_ref: Player = null
+var drop_list: Dictionary
 
 @export var speed: int
 @export var gravity_speed: int
