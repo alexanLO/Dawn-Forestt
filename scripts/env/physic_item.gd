@@ -41,9 +41,11 @@ func update_item_info( key: String, texture: CompressedTexture2D, item_info: Arr
 func _on_screen_exited():
 	queue_free()
 
+#Envia o item
 func _on_body_entered(body):
 	player_ref = body
 
+#Esse sinal só é util se você quiser que o player aperte um botão para poder coletar o item, caso o contrario não precisa dele.
 func _on_body_exited(_body):
 	player_ref = null
 
