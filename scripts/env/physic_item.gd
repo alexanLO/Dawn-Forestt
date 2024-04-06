@@ -31,7 +31,7 @@ func apply_random_impulse() -> void:
 func update_item_info( key: String, texture: CompressedTexture2D, item_info: Array) -> void:
 	#So ira executar o que está nessa função quando o objeto(self = physicitem) estiver ready.
 	#isso é para evitar bugs.
-	await(self)
+	await(self.ready)
 	
 	item_name = key
 	item_texture = texture
