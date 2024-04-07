@@ -564,7 +564,7 @@ libraries = {
 }
 autoplay = "idle"
 
-[node name="Stats" type="Node" parent="." node_paths=PackedStringArray("player", "collision_area", "invencibility_timer")]
+[node name="Stats" type="Node" parent="." node_paths=PackedStringArray("player", "collision_area", "invencibility_timer") groups=["player_stats"]]
 script = ExtResource("5")
 player = NodePath("..")
 collision_area = NodePath("../CollisionArea")

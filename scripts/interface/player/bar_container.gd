@@ -63,4 +63,11 @@ func call_tween(bar: TextureProgressBar, initial_value: int, final_value: int) -
 		0.2 #Duração do aumento de barra.
 	).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
 	
-	var _start: bool = tween.start()
+	tween.play()
+
+func reset_exp_bar(max_exp: int, value: int) -> void:
+	exp_bar.max_value = max_exp
+	exp_bar.value = value
+	current_exp = value
+	
+	call_tween(exp_bar, 0, current_exp)

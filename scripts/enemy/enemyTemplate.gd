@@ -18,6 +18,7 @@ var drop_list: Dictionary
 #Essa variavel vai ajuda ao inimigo parar de perseguir o player e fazer o attack:
 @export var proximity_threshold: int 
 @export var raycast_default_position: int
+@export var enemy_exp: int
 
 
 func _physics_process(delta: float) -> void:
@@ -72,6 +73,7 @@ func floor_collision() -> bool:
 
 func kill_enemy() -> void:
 	animation.play("kill")
+	get_tree().call_group("player_stats", "update_exp", enemy_exp)
 	spawn_item_probability()
 
 #==================== Drop Item ====================
