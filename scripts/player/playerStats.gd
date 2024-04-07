@@ -49,6 +49,8 @@ func _ready() -> void:
 	
 	current_mana = base_mana + bonus_mana
 	max_mana = current_mana
+	
+	get_tree().call_group("bar_container", "init_bar", max_health, max_mana, level_dict[str(level)])
 
 func update_exp(value: int) -> void:
 	current_exp += value
@@ -98,9 +100,10 @@ func update_mana(type: String, value: int) -> void:
 		"Decrease":
 			current_mana -= value
 
-#func _process(delta):
-	#if Input.is_action_just_pressed("jump"):
-		#update_health("Decrease", 5)
+#==================== teste dano ====================
+func _process(delta):
+	if Input.is_action_just_pressed("jump"):
+		update_health("Decrease", 5)
 
 #==================== Signals ====================
 

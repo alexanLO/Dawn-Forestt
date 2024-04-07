@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cmt7lncfsya5g" path="res://assets/interface/stats/bar/exp_bar_background.png" id="5_bmmgt"]
 [ext_resource type="Texture2D" uid="uid://c08qplmj5be8c" path="res://assets/interface/stats/bar/exp_bar.png" id="6_6orni"]
 
-[node name="Control" type="Control" node_paths=PackedStringArray("health_bar", "mana_bar", "exp_bar")]
+[node name="BarContainer" type="Control" node_paths=PackedStringArray("health_bar", "mana_bar", "exp_bar") groups=["bar_container"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
