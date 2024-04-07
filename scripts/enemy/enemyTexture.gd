@@ -3,7 +3,7 @@ class_name EnemyTexture
 
 @export var animation: AnimationPlayer
 @export var enemy: EnemyTemplate
-@export var attack_area_collision: CollisionShape2D
+@export var attack_area_collision: Area2D
 
 func animate(_velocity: Vector2) -> void:
 	pass

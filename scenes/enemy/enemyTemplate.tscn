@@ -17,7 +17,7 @@ animation = NodePath("Animation")
 script = ExtResource("3")
 animation = NodePath("../Animation")
 enemy = NodePath("..")
-attack_area_collision = NodePath("../EnemyAttackArea/Collision")
+attack_area_collision = NodePath("../EnemyAttackArea")
 
 [node name="Animation" type="AnimationPlayer" parent="."]
 

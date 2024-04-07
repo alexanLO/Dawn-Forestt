@@ -436,7 +436,7 @@ size = Vector2(225, 40)
 size = Vector2(60, 38.5714)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8qwaa"]
-size = Vector2(51.4286, 40)
+size = Vector2(52.8572, 40)
 
 [node name="Whale" instance=ExtResource("1")]
 scale = Vector2(0.7, 0.7)
@@ -485,7 +485,7 @@ damage = 3
 invencibility_timer = 1.0
 
 [node name="Collision" parent="EnemyAttackArea" index="0"]
-position = Vector2(0, 2.85714)
+position = Vector2(-0.714277, 2.85714)
 shape = SubResource("RectangleShape2D_8qwaa")
 disabled = true
 

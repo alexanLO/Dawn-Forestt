@@ -10,7 +10,7 @@ var shielding: bool = false
 
 var base_health: int = 15
 var base_mana: int = 10
-var base_attack: int = 5
+var base_attack: int = 1
 var base_magic_attack: int = 3
 var base_defense: int = 1
 
@@ -98,11 +98,17 @@ func update_mana(type: String, value: int) -> void:
 		"Decrease":
 			current_mana -= value
 
-func _on_InvecibilityTimer_timeout() -> void:
-	collision_area.set_deferred("monitoring", true)
+#func _process(delta):
+	#if Input.is_action_just_pressed("jump"):
+		#update_health("Decrease", 5)
+
+#==================== Signals ====================
 
 func _on_collision_area_entered(area):
 		if area.name == "EnemyAttackArea":
 			update_health("Decrease", area.damage)
 			collision_area.set_deferred("monitoring", false)
 			invencibility_timer.start(area.invencibility_timer)
+
+func _on_InvecibilityTimer_timeout() -> void:
+	collision_area.set_deferred("monitoring", true)

@@ -10,7 +10,7 @@ var sufflix: String = "_right"
 
 @export var animation: AnimationPlayer
 @export var player: Player
-@export var attack_collision: CollisionShape2D
+@export var attack_collision: Area2D
 
 func animate(direction: Vector2) -> void:
 	verify_position(direction)
@@ -28,6 +28,8 @@ func animate(direction: Vector2) -> void:
 		horizontal_behavior(direction)
 	
 
+#==================== Moviment ====================
+
 func verify_position(direction: Vector2) -> void:
 	if direction.x > 0:
 		flip_h = false
@@ -43,6 +45,22 @@ func verify_position(direction: Vector2) -> void:
 		player.direction = 1 #Força para sair da parede, ela tem que ser inversa da direção olhando.
 		position = Vector2(-2, 0) #wall slide directio
 		player.wall_ray.target_position = Vector2(-7.5, 0)
+
+func horizontal_behavior(direction: Vector2) -> void:
+	if direction.x != 0:
+		animation.play("run" + sufflix)
+	else:
+		animation.play("idle")
+		
+
+func vertical_behavior(direction: Vector2) -> void:
+	if direction.y > 0:
+		player.landing = true
+		animation.play("fall")
+	elif direction.y < 0:
+		animation.play("jump")
+
+#==================== Actions ====================
 
 func hit_behavior() -> void:
 	player.set_physics_process(false)
@@ -65,37 +83,30 @@ func action_behavior() -> void:
 		animation.play("crouch")
 		crouching_off = false
 
-func horizontal_behavior(direction: Vector2) -> void:
-	if direction.x != 0:
-		animation.play("run" + sufflix)
-	else:
-		animation.play("idle")
-		
-
-func vertical_behavior(direction: Vector2) -> void:
-	if direction.y > 0:
-		player.landing = true
-		animation.play("fall")
-	elif direction.y < 0:
-		animation.play("jump")
+#==================== Finished Animations ====================
 
 func _on_Animation_animation_finished(anim_name: String):
 	match anim_name:
 		"landing":
 			player.landing = false
 			player.set_physics_process(true) #Physics_process irá voltar a funcionar apos o landing.
+			
 		"attack_left":
 			normal_attack = false
 			player.attacking = false
+			
 		"attack_right":
 			normal_attack = false
 			player.attacking = false
+			
 		"hit":
 			player.on_hit = false
 			player.set_physics_process(true)
+			
 			if player.defending:
 				animation.play("defense")
 			if player.crouching:
 				animation.play("crouch")
+			
 		"dead":
 			emit_signal("game_over")

@@ -14,7 +14,6 @@ func update_health(damage: int) -> void:
 	
 	enemy.can_hit = true
 
-
 func _on_area_entered(area):
 	if area.get_parent() is Player:
 		var player_stats: Stats = area.get_parent().get_node("Stats")

@@ -41,6 +41,7 @@ func move_behavior() -> void:
 			velocity.x = direction.x * speed
 		else:
 			velocity.x = 0
+			
 		#O return é para não executar nada que estiver embaixo dele:
 		return 
 		
