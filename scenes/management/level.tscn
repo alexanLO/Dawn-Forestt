@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://41k2bx0ri721"]
+[gd_scene load_steps=10 format=3 uid="uid://41k2bx0ri721"]
 
 [ext_resource type="TileSet" uid="uid://bbgkl65auumop" path="res://resources/floor.tres" id="1"]
 [ext_resource type="TileSet" uid="uid://db6bnhmc4vptf" path="res://resources/normal_decorations.tres" id="3_8wmnx"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cbqcd4n40j1t7" path="res://scenes/player/player.tscn" id="5"]
 [ext_resource type="Script" path="res://scripts/management/level.gd" id="6"]
 [ext_resource type="PackedScene" uid="uid://ccv55eiorwhkn" path="res://scenes/enemy/Whale.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://by1v0fynwx2sq" path="res://scenes/interface/general/hud.tscn" id="8_ele5q"]
 [ext_resource type="TileSet" uid="uid://bfq0mdrbohxhf" path="res://resources/small_decorations.tres" id="9_ke2td"]
 
 [sub_resource type="Environment" id="1"]
@@ -52,4 +53,5 @@ position = Vector2(30, 145)
 position = Vector2(291, 158)
 
 [node name="Whale" parent="Enemy" instance=ExtResource("7")]
-collision_mask = 1
+
+[node name="Hud" parent="." instance=ExtResource("8_ele5q")]
