@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://b0jwagt5muqya"]
+[gd_scene load_steps=8 format=3 uid="uid://b0jwagt5muqya"]
 
+[ext_resource type="Script" path="res://scripts/interface/player/bar_container.gd" id="1_cc1iy"]
 [ext_resource type="Texture2D" uid="uid://b0y2g5qm2jr1m" path="res://assets/interface/stats/bar/health_bar_background.png" id="1_ucpde"]
 [ext_resource type="Texture2D" uid="uid://d2uds1wha84y8" path="res://assets/interface/stats/bar/health_bar.png" id="2_0bs00"]
 [ext_resource type="Texture2D" uid="uid://coksnkfgiw0x2" path="res://assets/interface/stats/bar/mana_bar_background.png" id="3_uwyrp"]
@@ -7,13 +8,17 @@
 [ext_resource type="Texture2D" uid="uid://cmt7lncfsya5g" path="res://assets/interface/stats/bar/exp_bar_background.png" id="5_bmmgt"]
 [ext_resource type="Texture2D" uid="uid://c08qplmj5be8c" path="res://assets/interface/stats/bar/exp_bar.png" id="6_6orni"]
 
-[node name="Control" type="Control"]
+[node name="Control" type="Control" node_paths=PackedStringArray("health_bar", "mana_bar", "exp_bar")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_cc1iy")
+health_bar = NodePath("HealthBarBackground/HealthBar")
+mana_bar = NodePath("ManaBarBackground/ManaBar")
+exp_bar = NodePath("ExpBarBackground/ExpBar")
 
 [node name="HealthBarBackground" type="TextureRect" parent="."]
 layout_mode = 0
@@ -68,5 +73,6 @@ offset_top = 7.0
 offset_right = 47.0
 offset_bottom = 9.0
 value = 100.0
+fill_mode = 1
 stretch_margin_left = 13
 texture_progress = ExtResource("6_6orni")

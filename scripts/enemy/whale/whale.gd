@@ -5,7 +5,7 @@ func _ready() -> void:
 	randomize()
 	drop_list = {
 		"Heal Potion": [
-			"res:res://assets/item/consumable/health_potion.png",
+			"res://assets/item/consumable/health_potion.png",
 			20, #Chance de drop.
 			"Health", #Tipo do item.
 			5, #Valor que a poção recupera a vida.
