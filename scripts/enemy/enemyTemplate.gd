@@ -10,7 +10,6 @@ var can_hit: bool = false
 var can_attack: bool = false
 
 var drop_bonus: int = 1
-
 var player_ref: Player = null
 var drop_list: Dictionary
 
@@ -84,29 +83,30 @@ func spawn_item_probability() -> void:
 		drop_bonus = 2
 	else:
 		drop_bonus = 3
-	
+		
 	#===== Teste =====
 	print("Multiplicador de drop: " + str(drop_bonus))
 	#==================
-	
+		
 	for key in drop_list.keys():
 		var rng: int = randi() % 100 + 1 
 		if rng <= drop_list[key][1] * drop_bonus:
 			var item_texture: CompressedTexture2D = load(drop_list[key][0])
+			print(item_texture)
 			var item_info: Array = [
 				drop_list[key][0], 
 				drop_list[key][2], 
 				drop_list[key][3], 
 				drop_list[key][4], 
 				1 #O 1 é a quantidade do item que vai ser mandado para o player
-				] 
+			] 
 			
 			spawn_physic_item(key, item_texture, item_info)
 
 func spawn_physic_item(key: String, item_texture: CompressedTexture2D, item_info: Array) -> void:
 	var physic_item_scene = load("res://scenes/env/physic_item.tscn")
 	var item: PhysicItem = physic_item_scene.instantiate()
-	get_tree().root.add_child(item) #call_deferred("add_child", item)
+	get_tree().root.call_deferred("add_child", item)
 	#Se a gente não instanciar a posição do item ele vai spawnar na posição (0, 0),
 	#por isso instanciamos a posição do item onde o inimigo morreu.
 	item.global_position = global_position
