@@ -135,7 +135,7 @@ func crouch() -> void:
 #==================== Effects ====================
 
 func spawn_effect(effect_path: String, offset: Vector2, is_flipped: bool) -> void:
-	var effect_instance: EffectTemplate = load(effect_path).instance_scene()
+	var effect_instance: EffectTemplate = load(effect_path).instantiate()
 	get_tree().root.add_child(effect_instance)
 	
 	if is_flipped:
