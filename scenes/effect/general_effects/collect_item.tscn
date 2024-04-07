@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://bsuqqfurdhiwm"]
+
+[ext_resource type="PackedScene" uid="uid://ewg8oh443udj" path="res://scenes/effect/template/effect_template.tscn" id="1_3pwve"]
+[ext_resource type="Texture2D" uid="uid://deunbvt8mp6l0" path="res://assets/effect/general_effect/collect_item_effect.png" id="2_2m5hg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_or6bx"]
+atlas = ExtResource("2_2m5hg")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qtlxy"]
+atlas = ExtResource("2_2m5hg")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ryw28"]
+atlas = ExtResource("2_2m5hg")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t34qe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_or6bx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qtlxy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ryw28")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[node name="CollectItem" instance=ExtResource("1_3pwve")]
+sprite_frames = SubResource("SpriteFrames_t34qe")
+animation = &"idle"

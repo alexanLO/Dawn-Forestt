@@ -2,6 +2,8 @@ extends RigidBody2D
 class_name PhysicItem
 
 @export var texture: Sprite2D
+#Aqui foi usado o preload porque o efeito vai carregar antes do objeto estiver rodando.
+const COLLECT_EFFECT: PackedScene = preload("res://scenes/effect/general_effects/collect_item.tscn")
 
 var player_ref: Player = null
 
@@ -17,6 +19,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if player_ref != null and Input.is_action_just_pressed("interect"):
 		#Emitir sinal para enviar item para inventario
+		spawn_effect()
 		queue_free()
 
 func apply_random_impulse() -> void:
@@ -38,7 +41,12 @@ func update_item_info( key: String, texture: CompressedTexture2D, item_info: Arr
 	item_info_list = item_info
 	
 	texture.texture = texture
-	 
+
+func spawn_effect() -> void:
+	var collect_effect: EffectTemplate = COLLECT_EFFECT.instantiate()
+	get_tree().root.add_child(collect_effect)
+	collect_effect.global_position = global_position
+	collect_effect.play_effect()
 
 #==================== Signals ====================
 
