@@ -19,6 +19,7 @@ var dead: bool = false
 #vai poder pular e movimentação horizontal:'
 var can_track_input: bool = true 
 var not_on_wall: bool = true
+var flipped: bool = false
 
 @export var jump_speed: int
 @export var speed: int
@@ -63,6 +64,7 @@ func vertical_moviment_env() -> void:
 	var jump_condition = can_track_input and not attacking
 	if Input.is_action_just_pressed("jump") and jump_count < 2 and jump_condition:
 		jump_count += 1
+		spawn_effect("res://scenes/effect/dust/jump_effect.tscn", Vector2(0, 18), flipped)
 		if next_to_wall() and not is_on_floor():
 			velocity.y = wall_jump_speed
 			velocity.x = wall_impulse_speed * direction

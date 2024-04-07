@@ -32,12 +32,14 @@ func verify_position(direction: Vector2) -> void:
 	if direction.x > 0:
 		flip_h = false
 		sufflix = "_right"
+		player.flipped = false
 		player.direction = -1 #Força para sair da parede, ela tem que ser inversa da direção olhando.
 		position = Vector2.ZERO #wall slide directio
 		player.wall_ray.target_position = Vector2(5.5, 0)		
 	elif direction.x < 0:
 		flip_h = true
 		sufflix = "_left"
+		player.flipped = true
 		player.direction = 1 #Força para sair da parede, ela tem que ser inversa da direção olhando.
 		position = Vector2(-2, 0) #wall slide directio
 		player.wall_ray.target_position = Vector2(-7.5, 0)
@@ -65,7 +67,7 @@ func action_behavior() -> void:
 
 func horizontal_behavior(direction: Vector2) -> void:
 	if direction.x != 0:
-		animation.play("run")
+		animation.play("run" + sufflix)
 	else:
 		animation.play("idle")
 		
