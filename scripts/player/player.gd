@@ -132,3 +132,15 @@ func crouch() -> void:
 		stats.shielding = false
 		texture.crouching_off = true
 
+#==================== Effects ====================
+
+func spawn_effect(effect_path: String, offset: Vector2, is_flipped: bool) -> void:
+	var effect_instance: EffectTemplate = load(effect_path).instance_scene()
+	get_tree().root.add_child(effect_instance)
+	
+	if is_flipped:
+		effect_instance.flip_h = true
+	
+	#Offset é mais para deixas o efeito embaixo do pé do player
+	effect_instance.global_position = global_position + offset
+	effect_instance.play_effect()
