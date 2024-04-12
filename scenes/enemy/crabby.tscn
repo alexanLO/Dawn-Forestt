@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://7nw0phvd2f2i"]
+
+[ext_resource type="PackedScene" uid="uid://7clhhx0ckllp" path="res://scenes/enemy/enemey_template.tscn" id="1_qu6rg"]
+[ext_resource type="Script" path="res://scripts/enemy/crabby/crabby.gd" id="2_mnv1y"]
+
+[node name="Crabby" instance=ExtResource("1_qu6rg")]
+script = ExtResource("2_mnv1y")
+speed = 55
+gravity_speed = 350
+proximity_threshould = 20
+raycast_default_position = 16
+
+[node name="CollisionArea" parent="." index="5"]
+health = 8
+invunerability_timer = 1.2
+
+[node name="EnemyAttackArea" parent="." index="6"]
+damage = 6
+invencibility_timer = 1.0

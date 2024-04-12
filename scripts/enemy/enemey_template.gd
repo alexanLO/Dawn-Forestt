@@ -24,8 +24,8 @@ func _physics_process(delta: float) -> void:
 	gravity(delta)
 	move_behavior()
 	verify_position()
-	move_and_slide()
 	texture.animate(velocity)
+	move_and_slide()
 
 
 #==================== Moviments ====================
@@ -73,7 +73,7 @@ func floor_collision() -> bool:
 
 func kill_enemy() -> void:
 	animation.play("kill")
-	#spawn_item_probability()
+	spawn_item_probability()
 
 #==================== Drop Item ====================
 func spawn_item_probability() -> void:
