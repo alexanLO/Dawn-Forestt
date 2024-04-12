@@ -1,0 +1,10 @@
+[gd_resource type="Shortcut" load_steps=2 format=3 uid="uid://1ecs1scx4liq"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_dvj2p"]
+alt_pressed = true
+shift_pressed = true
+pressed = true
+keycode = 70
+
+[resource]
+events = [SubResource("InputEventKey_dvj2p")]
