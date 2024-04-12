@@ -1,6 +1,7 @@
 extends CharacterBody2D
 class_name Player
 
+
 @export var texture: PlayerTexture
 @export var wall_ray: RayCast2D 
 @export var stats: Stats 
@@ -27,6 +28,7 @@ var flipped: bool = false
 @export var player_gravity: int
 @export var wall_gravity: int
 @export var wall_impulse_speed: int
+
 
 #Godot recomenda usar essa funcão para objetos que usam a física. Funções proprias da godot não precisa especificar
 #se é void ou não:
