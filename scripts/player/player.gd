@@ -6,6 +6,9 @@ class_name Player
 @export var wall_ray: RayCast2D 
 @export var stats: Stats 
 
+const SPELL: PackedScene = preload("res://scenes/player/spell_area.tscn")
+
+var spell_offset: Vector2 = Vector2(100, +50)
 var jump_count: int = 0
 var direction: int = 1
 
@@ -153,3 +156,9 @@ func spawn_effect(effect_path: String, offset: Vector2, is_flipped: bool) -> voi
 	#Offset é mais para deixas o efeito embaixo do pé do player
 	effect_instance.global_position = global_position + offset
 	effect_instance.play_effect()
+
+func spawn_spell() -> void:
+	var spell: FireSpell = SPELL.instantiate()
+	spell.spell_damage = stats.base_magic_attack + stats.bonus_magic_attack
+	spell.global_position = global_position + spell_offset
+	get_tree().root.call_deferred("add_child", spell)

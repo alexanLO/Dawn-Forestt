@@ -39,13 +39,15 @@ func verify_position(direction: Vector2) -> void:
 		sufflix = "_right"
 		player.flipped = false
 		player.direction = -1 #Força para sair da parede, ela tem que ser inversa da direção olhando.
+		player.spell_offset = Vector2(100, -50)
 		position = Vector2.ZERO #wall slide directio
-		player.wall_ray.target_position = Vector2(5.5, 0)		
+		player.wall_ray.target_position = Vector2(5.5, 0)
 	elif direction.x < 0:
 		flip_h = true
 		sufflix = "_left"
 		player.flipped = true
 		player.direction = 1 #Força para sair da parede, ela tem que ser inversa da direção olhando.
+		player.spell_offset = Vector2(-100, -50)
 		position = Vector2(-2, 0) #wall slide directio
 		player.wall_ray.target_position = Vector2(-7.5, 0)
 
