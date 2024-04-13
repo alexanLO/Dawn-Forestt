@@ -3,9 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://bcxm7qlltxkiv" path="res://scenes/effect/fireboll/fire_ball_1.tscn" id="1_d3wfn"]
 [ext_resource type="Texture2D" uid="uid://bg4iq2ool34gi" path="res://assets/effect/fireball/fire_ball_3.png" id="2_kjmta"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7sht4"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_wxwms"]
 particles_animation = true
-particles_anim_h_frames = 60
+particles_anim_h_frames = 45
 particles_anim_v_frames = 1
 particles_anim_loop = true
 
@@ -16,16 +16,19 @@ point_count = 3
 [sub_resource type="CurveTexture" id="CurveTexture_30b3b"]
 curve = SubResource("Curve_70rvv")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_oyhwg"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_l373r"]
 emission_shape = 3
 emission_box_extents = Vector3(40, 1, 1)
+angle_min = -90.0
+direction = Vector3(0, 1, 0)
 spread = 0.0
 gravity = Vector3(0, 60, 0)
 scale_curve = SubResource("CurveTexture_30b3b")
 anim_speed_min = 3.0
 anim_speed_max = 3.0
+turbulence_noise_speed_random = 4.0
 
 [node name="FireBall3" instance=ExtResource("1_d3wfn")]
-material = SubResource("CanvasItemMaterial_7sht4")
-process_material = SubResource("ParticleProcessMaterial_oyhwg")
+material = SubResource("CanvasItemMaterial_wxwms")
+process_material = SubResource("ParticleProcessMaterial_l373r")
 texture = ExtResource("2_kjmta")
