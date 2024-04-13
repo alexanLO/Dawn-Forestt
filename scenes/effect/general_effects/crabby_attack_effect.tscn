@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://cwon27ltraewh"]
+
+[ext_resource type="PackedScene" uid="uid://ewg8oh443udj" path="res://scenes/effect/template/effect_template.tscn" id="1_isqyg"]
+[ext_resource type="Texture2D" uid="uid://dik6ixagcq17e" path="res://assets/enemy/crabby/attack_effect.png" id="2_enyso"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_al32t"]
+atlas = ExtResource("2_enyso")
+region = Rect2(0, 0, 118, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fbe5l"]
+atlas = ExtResource("2_enyso")
+region = Rect2(118, 0, 118, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ii7n0"]
+atlas = ExtResource("2_enyso")
+region = Rect2(236, 0, 118, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ufrby"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_al32t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fbe5l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ii7n0")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[node name="CrabbyAttackEffect" instance=ExtResource("1_isqyg")]
+sprite_frames = SubResource("SpriteFrames_ufrby")
+animation = &"idle"
+frame = 2
+frame_progress = 1.0

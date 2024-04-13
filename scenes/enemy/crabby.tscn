@@ -499,14 +499,19 @@ position = Vector2(-16, 0)
 target_position = Vector2(0, 20)
 
 [node name="Collision" parent="." index="3"]
+visible = false
 position = Vector2(1, 1.5)
 shape = SubResource("RectangleShape2D_nfkqt")
+
+[node name="DetectionArea" parent="." index="4"]
+visible = false
 
 [node name="Collision" parent="DetectionArea" index="0"]
 position = Vector2(0, 1.5625)
 shape = SubResource("RectangleShape2D_x0ttn")
 
 [node name="CollisionArea" parent="." index="5"]
+visible = false
 health = 8
 invunerability_timer = 1.2
 
@@ -515,6 +520,7 @@ position = Vector2(1, 3.5)
 shape = SubResource("RectangleShape2D_bipdo")
 
 [node name="EnemyAttackArea" parent="." index="6"]
+visible = false
 damage = 6
 invencibility_timer = 1.0
 
