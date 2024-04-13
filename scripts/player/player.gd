@@ -28,6 +28,7 @@ var flipped: bool = false
 @export var player_gravity: int
 @export var wall_gravity: int
 @export var wall_impulse_speed: int
+@export var magic_attack_cost: int
 
 
 #Godot recomenda usar essa funcão para objetos que usam a física. Funções proprias da godot não precisa especificar
@@ -108,11 +109,15 @@ func actions_env() -> void:
 	crouch()
 
 func attack() -> void:
-	var attack_condition: bool = not attacking and not defending and not crouching
+	var attack_condition: bool = not attacking and not defending and not crouching and is_on_floor()
 	#Is_on_floor entra no If para o personagem só poder atacar quando estiver no chão:
-	if Input.is_action_just_pressed("attack") and attack_condition and is_on_floor(): 
+	if Input.is_action_just_pressed("attack") and attack_condition: 
 		attacking = true
 		texture.normal_attack = true
+	elif Input.is_action_just_pressed("magic_attack") and attack_condition and stats.current_mana >= magic_attack_cost:
+		attacking = true
+		texture.magic_attack = true
+		stats.update_mana("Decrease", magic_attack_cost)
 
 func defense() -> void:
 	if Input.is_action_pressed("defense") and is_on_floor() and not crouching:

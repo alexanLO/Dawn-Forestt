@@ -6,11 +6,14 @@ signal game_over
 var normal_attack: bool = false
 var defending_off: bool = false
 var crouching_off: bool = false
+var magic_attack: bool = false
+
 var sufflix: String = "_right"
 
 @export var animation: AnimationPlayer
 @export var player: Player
 @export var attack_collision: Area2D
+
 
 func animate(direction: Vector2) -> void:
 	verify_position(direction)
@@ -62,19 +65,13 @@ func vertical_behavior(direction: Vector2) -> void:
 
 #==================== Actions ====================
 
-func hit_behavior() -> void:
-	player.set_physics_process(false)
-	attack_collision.set_deferred("disabled", true)
-	if player.dead:
-		animation.play("dead")
-	elif player.on_hit:
-		animation.play("hit")
-
 func action_behavior() -> void:
 	if player.next_to_wall():
 		animation.play("wall_slide")
 	elif player.attacking and normal_attack:
 		animation.play("attack" + sufflix)
+	elif player.attacking and magic_attack:
+		animation.play("spell_attack")
 	#O defense_off e o crouching_off é para quando a pessoa segurar o botão o personagem continuar defendendo ou agachado.
 	elif player.defending and defending_off:
 		animation.play("defense")
@@ -82,6 +79,14 @@ func action_behavior() -> void:
 	elif player.crouching and crouching_off:
 		animation.play("crouch")
 		crouching_off = false
+
+func hit_behavior() -> void:
+	player.set_physics_process(false)
+	attack_collision.set_deferred("disabled", true)
+	if player.dead:
+		animation.play("dead")
+	elif player.on_hit:
+		animation.play("hit")
 
 #==================== Finished Animations ====================
 
@@ -97,6 +102,10 @@ func _on_Animation_animation_finished(anim_name: String):
 			
 		"attack_right":
 			normal_attack = false
+			player.attacking = false
+			
+		"spell_attack":
+			magic_attack = false
 			player.attacking = false
 			
 		"hit":
