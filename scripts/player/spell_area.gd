@@ -7,7 +7,7 @@ var spell_damage: int
 
 func _ready() -> void:
 	for children in get_children():
-		if children is GPUParticles2D:
+		if children is GPUParticles2D and children.name != "ExplosionParticles":
 			children.emitting = true
 
 func _on_animation_finished(_anim_name: String) -> void:

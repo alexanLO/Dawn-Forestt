@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://duur6q81qpulq"]
+
+[ext_resource type="Texture2D" uid="uid://dtjuao8k1fuis" path="res://assets/effect/explosion/explosion_3.png" id="1_7frqf"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_iysm1"]
+particles_animation = true
+particles_anim_h_frames = 60
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_8ifb0"]
+_data = [Vector2(0, 0.571429), 0.0, 0.0, 0, 0, Vector2(0.48, 0.549451), -0.686813, -0.686813, 0, 0, Vector2(1, 0.582418), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_domes"]
+curve = SubResource("Curve_8ifb0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jfpxc"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(40, 1, 1)
+direction = Vector3(0, 0, 0)
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_domes")
+anim_speed_min = 2.0
+anim_speed_max = 2.0
+
+[node name="ExplosionParticles" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_iysm1")
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_jfpxc")
+texture = ExtResource("1_7frqf")
+lifetime = 2.5
+one_shot = true
