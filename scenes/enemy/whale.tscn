@@ -452,10 +452,12 @@ position = Vector2(-33, 0)
 target_position = Vector2(0, 30)
 
 [node name="Collision" parent="." index="3"]
+visible = false
 position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_qarq4")
 
 [node name="DetectionArea" parent="." index="4"]
+visible = false
 collision_layer = 8
 
 [node name="Collision" parent="DetectionArea" index="0"]
@@ -463,6 +465,7 @@ position = Vector2(1.67862, 2.85714)
 shape = SubResource("RectangleShape2D_xxlpv")
 
 [node name="CollisionArea" parent="." index="5"]
+visible = false
 health = 10
 
 [node name="Collision" parent="CollisionArea" index="0"]
@@ -470,6 +473,7 @@ position = Vector2(-1.04904e-05, 2.85714)
 shape = SubResource("RectangleShape2D_u2a07")
 
 [node name="EnemyAttackArea" parent="." index="6"]
+visible = false
 damage = 3
 invencibility_timer = 1.0
 
