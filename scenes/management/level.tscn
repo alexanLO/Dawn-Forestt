@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://41k2bx0ri721"]
+[gd_scene load_steps=11 format=3 uid="uid://41k2bx0ri721"]
 
 [ext_resource type="TileSet" uid="uid://bbgkl65auumop" path="res://resources/floor.tres" id="1"]
 [ext_resource type="TileSet" uid="uid://db6bnhmc4vptf" path="res://resources/normal_decorations.tres" id="3_8wmnx"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cbqcd4n40j1t7" path="res://scenes/player/player.tscn" id="5"]
 [ext_resource type="Script" path="res://scripts/management/level.gd" id="6"]
 [ext_resource type="PackedScene" uid="uid://u8hk1i2p4ebt" path="res://scenes/enemy/whale.tscn" id="7_vmj5u"]
+[ext_resource type="PackedScene" uid="uid://dbb402qqm0cdi" path="res://scenes/enemy/crabby.tscn" id="8_5l2ei"]
 [ext_resource type="PackedScene" uid="uid://by1v0fynwx2sq" path="res://scenes/interface/general/hud.tscn" id="8_ele5q"]
 [ext_resource type="TileSet" uid="uid://bfq0mdrbohxhf" path="res://resources/small_decorations.tres" id="9_ke2td"]
 
@@ -54,5 +55,8 @@ position = Vector2(30, 145)
 position = Vector2(291, 158)
 
 [node name="Whale" parent="Enemy" instance=ExtResource("7_vmj5u")]
+
+[node name="Crabby" parent="Enemy" instance=ExtResource("8_5l2ei")]
+position = Vector2(-134, 3)
 
 [node name="Hud" parent="." instance=ExtResource("8_ele5q")]

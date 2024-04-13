@@ -1,8 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://dbb402qqm0cdi"]
+[gd_scene load_steps=22 format=3 uid="uid://dbb402qqm0cdi"]
 
 [ext_resource type="PackedScene" uid="uid://7clhhx0ckllp" path="res://scenes/enemy/enemey_template.tscn" id="1_qu6rg"]
 [ext_resource type="Script" path="res://scripts/enemy/crabby/crabby.gd" id="2_mnv1y"]
 [ext_resource type="Texture2D" uid="uid://b7bii3pbxjjpb" path="res://assets/enemy/crabby/idle.png" id="3_plbup"]
+[ext_resource type="Script" path="res://scripts/enemy/crabby/texture.gd" id="4_7okj8"]
 [ext_resource type="Texture2D" uid="uid://c3op8u3p7rlqf" path="res://assets/enemy/crabby/run.png" id="4_dojup"]
 [ext_resource type="Texture2D" uid="uid://cej3uvomqmtih" path="res://assets/enemy/crabby/hit.png" id="5_jo65a"]
 [ext_resource type="Texture2D" uid="uid://bnmrrers3ls1x" path="res://assets/enemy/crabby/dead.png" id="6_c5uau"]
@@ -477,10 +478,15 @@ size = Vector2(68, 16)
 
 [node name="Crabby" instance=ExtResource("1_qu6rg")]
 script = ExtResource("2_mnv1y")
+speed = 55
+gravity_speed = 350
+proximity_threshould = 20
+raycast_default_position = -16
 
 [node name="Texture" parent="." index="0"]
 texture = ExtResource("3_plbup")
 hframes = 9
+script = ExtResource("4_7okj8")
 
 [node name="Animation" parent="." index="1"]
 libraries = {
@@ -496,22 +502,21 @@ target_position = Vector2(0, 20)
 position = Vector2(1, 1.5)
 shape = SubResource("RectangleShape2D_nfkqt")
 
-[node name="DetectionArea" parent="." index="4"]
-visible = false
-
 [node name="Collision" parent="DetectionArea" index="0"]
 position = Vector2(0, 1.5625)
 shape = SubResource("RectangleShape2D_x0ttn")
 
 [node name="CollisionArea" parent="." index="5"]
-visible = false
+health = 8
+invunerability_timer = 1.2
 
 [node name="Collision" parent="CollisionArea" index="0"]
 position = Vector2(1, 3.5)
 shape = SubResource("RectangleShape2D_bipdo")
 
 [node name="EnemyAttackArea" parent="." index="6"]
-visible = false
+damage = 6
+invencibility_timer = 1.0
 
 [node name="Collision" parent="EnemyAttackArea" index="0"]
 position = Vector2(2, 5)

@@ -12,6 +12,7 @@ var can_attack: bool = false
 var player_ref: Player = null
 var drop_list: Dictionary
 var drop_bonus: int = 1
+var attack_animation_sufflix: String = "_left"
 
 @export var speed: int
 @export var gravity_speed: int
@@ -55,9 +56,11 @@ func verify_position() -> void:
 		
 		if direction > 0:
 			texture.flip_h = true
+			attack_animation_sufflix = "_right"
 			floor_ray.position.x = abs(raycast_default_position)
 		elif direction < 0:
 			texture.flip_h = false
+			attack_animation_sufflix = "_left"
 			#Como o valor já [e negativo não precisa passar o abs() para torna positivo:
 			floor_ray.position.x = raycast_default_position
 
