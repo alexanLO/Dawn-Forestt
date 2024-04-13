@@ -1,12 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://7clhhx0ckllp"]
+[gd_scene load_steps=6 format=3 uid="uid://7clhhx0ckllp"]
 
 [ext_resource type="Script" path="res://scripts/enemy/detection_area.gd" id="1_mcjuq"]
 [ext_resource type="Script" path="res://scripts/enemy/enemey_template.gd" id="1_s8kc7"]
 [ext_resource type="Script" path="res://scripts/enemy/texture.gd" id="2_8ru7j"]
 [ext_resource type="Script" path="res://scripts/enemy/collision_area.gd" id="4_kpkhk"]
 [ext_resource type="Script" path="res://scripts/enemy/enemy_attack_area.gd" id="5_wwpsr"]
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_8pe04"]
 
 [node name="EnemeyTemplate" type="CharacterBody2D" node_paths=PackedStringArray("texture", "floor_ray", "animation")]
 collision_layer = 8
@@ -22,9 +20,6 @@ enemy = NodePath("..")
 attack_area_collision = NodePath("../EnemyAttackArea/Collision")
 
 [node name="Animation" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_8pe04")
-}
 
 [node name="FloorRay" type="RayCast2D" parent="."]
 
