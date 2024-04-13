@@ -1,0 +1,146 @@
+[gd_scene load_steps=9 format=3 uid="uid://pkhniqbiqbr"]
+
+[ext_resource type="PackedScene" uid="uid://bcxm7qlltxkiv" path="res://scenes/effect/fireboll/fire_ball_1.tscn" id="1_lo2p1"]
+[ext_resource type="PackedScene" uid="uid://diorcsngoqohl" path="res://scenes/effect/fireboll/fire_ball_2.tscn" id="2_5e1n4"]
+[ext_resource type="PackedScene" uid="uid://c32mnxah24hc8" path="res://scenes/effect/fireboll/fire_ball_3.tscn" id="3_813od"]
+[ext_resource type="Texture2D" uid="uid://b52lsstfftybf" path="res://assets/effect/light.png" id="4_5timf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_moxe8"]
+size = Vector2(100, 20)
+
+[sub_resource type="Animation" id="Animation_cnhn1"]
+resource_name = "light_strength"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpellLight:texture_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 3.5, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.01, 0.6, 0.6, 0.01]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpellLight:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 3.5, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.2, 1.2, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Collision:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 75)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Collision:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 3.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_yhryo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpellLight:texture_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.01]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpellLight:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Collision:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Collision:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cijm4"]
+_data = {
+"RESET": SubResource("Animation_yhryo"),
+"light_strength": SubResource("Animation_cnhn1")
+}
+
+[node name="SpellArea" type="Area2D"]
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_moxe8")
+
+[node name="FireBall1" parent="." instance=ExtResource("1_lo2p1")]
+emitting = false
+one_shot = true
+
+[node name="FireBall2" parent="." instance=ExtResource("2_5e1n4")]
+emitting = false
+one_shot = true
+
+[node name="FireBall3" parent="." instance=ExtResource("3_813od")]
+emitting = false
+one_shot = true
+
+[node name="SpellLight" type="PointLight2D" parent="."]
+energy = 0.0
+texture = ExtResource("4_5timf")
+texture_scale = 0.01
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_cijm4")
+}
+autoplay = "light_strength"
