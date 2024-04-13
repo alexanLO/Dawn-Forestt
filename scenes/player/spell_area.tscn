@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://pkhniqbiqbr"]
+[gd_scene load_steps=10 format=3 uid="uid://pkhniqbiqbr"]
 
+[ext_resource type="Script" path="res://scripts/player/spell_area.gd" id="1_82uim"]
 [ext_resource type="PackedScene" uid="uid://bcxm7qlltxkiv" path="res://scenes/effect/fireboll/fire_ball_1.tscn" id="1_lo2p1"]
 [ext_resource type="PackedScene" uid="uid://diorcsngoqohl" path="res://scenes/effect/fireboll/fire_ball_2.tscn" id="2_5e1n4"]
 [ext_resource type="PackedScene" uid="uid://c32mnxah24hc8" path="res://scenes/effect/fireboll/fire_ball_3.tscn" id="3_813od"]
@@ -118,6 +119,7 @@ _data = {
 }
 
 [node name="SpellArea" type="Area2D"]
+script = ExtResource("1_82uim")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_moxe8")
@@ -139,8 +141,10 @@ energy = 0.0
 texture = ExtResource("4_5timf")
 texture_scale = 0.01
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="Animation" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_cijm4")
 }
 autoplay = "light_strength"
+
+[connection signal="animation_finished" from="Animation" to="." method="_on_animation_finished"]
