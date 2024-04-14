@@ -28,7 +28,6 @@ func _physics_process(delta: float) -> void:
 	texture.animate(velocity)
 	move_and_slide()
 
-
 #==================== Moviments ====================
 
 func move_behavior() -> void:
@@ -79,6 +78,7 @@ func kill_enemy() -> void:
 	spawn_item_probability()
 
 #==================== Drop Item ====================
+
 func spawn_item_probability() -> void:
 	var random_number: int = randi() % 21 #Dado falso
 	if random_number <= 6:
@@ -113,4 +113,3 @@ func spawn_physic_item(key: String, item_texture: CompressedTexture2D, item_info
 	#por isso instanciamos a posição do item onde o inimigo morreu.
 	item.global_position = global_position
 	item.update_item_info(key, item_texture, item_info)
-
