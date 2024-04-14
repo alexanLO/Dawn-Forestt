@@ -3,8 +3,8 @@ class_name Stats
 
 @export var player = Player
 @export var collision_area: Area2D
-
 @export var invencibility_timer: Timer
+@export var floating_text: PackedScene
 
 var shielding: bool = false
 
@@ -56,6 +56,7 @@ func update_health(type: String, value: int) -> void:
 	match type:
 		"Increase":
 			current_health += value
+			spawn_floating_text("+", "Heal", value)
 			if current_health >= max_health:
 				current_health = max_health
 			
@@ -73,16 +74,19 @@ func update_mana(type: String, value: int) -> void:
 	match type:
 		"Increase":
 			current_mana += value
+			spawn_floating_text("+", "Mana", value)
 			if current_mana >= max_mana:
 				current_mana = max_mana 
 			
 		"Decrease":
 			current_mana -= value
+			spawn_floating_text("-", "Mana", value)
 	
 	get_tree().call_group("bar_container", "update_bar", "ManaBar", current_mana)	
 
 func update_exp(value: int) -> void:
 	current_exp += value
+	spawn_floating_text("+", "Exp", value)
 	get_tree().call_group("bar_container", "update_bar", "ExpBar", current_exp)
 	if current_exp >= level_dict[str(level)] and level < 9:
 		var leftover: int = current_exp - level_dict[str(level)]
@@ -96,9 +100,10 @@ func verify_shield(value: int) -> void:
 			return
 			
 		var damage = abs((base_defense + bonus_defense) - value)
+		spawn_floating_text("-", "Damage", damage)
 		if damage > 0:
 			current_health -= damage
-			
+			spawn_floating_text("-", "Damage", value)
 	else:
 		current_health -= value
 
@@ -127,3 +132,15 @@ func _on_collision_area_entered(area):
 
 func _on_InvecibilityTimer_timeout() -> void:
 	collision_area.set_deferred("monitoring", true)
+
+#==================== TextPopup ====================
+
+func spawn_floating_text(type_sign: String, type: String, value: int) -> void:
+	var text: FloatingText = floating_text.instantiate()
+	text.global_position = player.global_position
+	
+	text.type = type
+	text.type_sign = type_sign
+	text.value = value
+	
+	get_tree().root.call_deferred("add_child", text)

@@ -2,7 +2,7 @@ extends Label
 class_name FloatingText
 
 
-var tween: Tween
+var tween: Tween = create_tween()
 
 var mass: int = 20
 var value: int 

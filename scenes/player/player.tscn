@@ -1,10 +1,11 @@
-[gd_scene load_steps=27 format=3 uid="uid://cbqcd4n40j1t7"]
+[gd_scene load_steps=28 format=3 uid="uid://cbqcd4n40j1t7"]
 
 [ext_resource type="Texture2D" uid="uid://cchqgmmqdmiwo" path="res://assets/player/char_green.png" id="1"]
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="2"]
 [ext_resource type="Script" path="res://scripts/player/playerTexture.gd" id="3"]
 [ext_resource type="Texture2D" uid="uid://b52lsstfftybf" path="res://assets/effect/light.png" id="4"]
 [ext_resource type="Script" path="res://scripts/player/playerStats.gd" id="5"]
+[ext_resource type="PackedScene" uid="uid://ckqaoekt52g2j" path="res://scenes/env/floating_text.tscn" id="5_00s5m"]
 
 [sub_resource type="RectangleShape2D" id="8"]
 
@@ -601,6 +602,7 @@ script = ExtResource("5")
 player = NodePath("..")
 collision_area = NodePath("../CollisionArea")
 invencibility_timer = NodePath("InvecibilityTimer")
+floating_text = ExtResource("5_00s5m")
 
 [node name="InvecibilityTimer" type="Timer" parent="Stats"]
 one_shot = true
