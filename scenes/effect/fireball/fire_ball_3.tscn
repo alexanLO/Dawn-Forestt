@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://dw7pr0k4uyeej"]
+
+[ext_resource type="PackedScene" uid="uid://bo4hnii0n2uqw" path="res://scenes/effect/fireball/fire_ball_1.tscn" id="1_f2eut"]
+[ext_resource type="Texture2D" uid="uid://bg4iq2ool34gi" path="res://assets/effect/fireball/fire_ball_3.png" id="2_lkave"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_08nx6"]
+particles_animation = true
+particles_anim_h_frames = 60
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[node name="FireBall3" instance=ExtResource("1_f2eut")]
+material = SubResource("CanvasItemMaterial_08nx6")
+texture = ExtResource("2_lkave")
