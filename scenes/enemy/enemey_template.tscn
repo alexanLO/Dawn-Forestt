@@ -55,3 +55,4 @@ script = ExtResource("5_wwpsr")
 [connection signal="body_entered" from="DetectionArea" to="DetectionArea" method="_on_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="DetectionArea" method="_on_body_exited"]
 [connection signal="area_entered" from="CollisionArea" to="CollisionArea" method="_on_collision_area_entered"]
+[connection signal="timeout" from="CollisionArea/Timer" to="CollisionArea" method="_on_timer_timeout"]

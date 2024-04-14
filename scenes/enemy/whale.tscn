@@ -467,6 +467,7 @@ shape = SubResource("RectangleShape2D_xxlpv")
 [node name="CollisionArea" parent="." index="5"]
 visible = false
 health = 10
+invunerability_timer = 0.7
 
 [node name="Collision" parent="CollisionArea" index="0"]
 position = Vector2(-1.04904e-05, 2.85714)

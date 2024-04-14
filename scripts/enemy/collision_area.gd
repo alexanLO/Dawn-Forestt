@@ -13,6 +13,13 @@ func _on_collision_area_entered(area):
 		var player_stats: Stats = area.get_parent().get_node("Stats")
 		var player_attack: int = player_stats.base_attack + player_stats.bonus_attack
 		update_health(player_attack)
+	elif area is FireSpell:
+		update_health(area.spell_damage)
+		set_deferred("monitoring", false)
+		timer.start(invunerability_timer)
+
+func _on_timer_timeout():
+	set_deferred("monitoring", true)
 
 func update_health(damage: int) -> void:
 	health -= damage
