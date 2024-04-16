@@ -43,48 +43,48 @@ func floatint_text() -> void:
 		"Damage":
 			modulate = damage_color
 	
-	interpolate()
-
-func interpolate() -> void:
-	#Surge o objeto
-	tween.interpolate_property(
-		self,
-		"rect_scale",
-		Vector2(0.0, 0.0),
-		Vector2(1.0, 1.0),
-		0.3,
-		Tween.TRANS_LINEAR,
-		Tween.EASE_OUT,
-	)
-	
-	#Diminui a scale
-	tween.interpolate_property(
-		self,
-		"rect_scale",
-		Vector2(1.0, 1.0),
-		Vector2(0.4, 0.4),
-		1.0,
-		Tween.TRANS_LINEAR,
-		Tween.EASE_OUT,
-		0.6
-	)
+	#interpolate()
+#
+#func interpolate() -> void:
+	##Surge o objeto
+	#tween.interpolate_property(
+		#self,
+		#"rect_scale",
+		#Vector2(0.0, 0.0),
+		#Vector2(1.0, 1.0),
+		#0.3,
+		#Tween.TRANS_LINEAR,
+		#Tween.EASE_OUT,
+	#)
+	#
+	##Diminui a scale
+	#tween.interpolate_property(
+		#self,
+		#"rect_scale",
+		#Vector2(1.0, 1.0),
+		#Vector2(0.4, 0.4),
+		#1.0,
+		#Tween.TRANS_LINEAR,
+		#Tween.EASE_OUT,
+		#0.6
+	#)
 
 	#Diminui a visibilidade
-	tween.interpolate_property(
-		self,
-		"modulate:a",
-		1.0,
-		0.0,
-		0.3,
-		Tween.TRANS_LINEAR,
-		Tween.EASE_OUT,
-		#Tempo de delay do tween
-		0.7 
-	)
-	
-	tween.play()
-	#await(tween, "tween_all_completed")
-	queue_free()
+	#tween.interpolate_property(
+		#self,
+		#"modulate:a",
+		#1.0,
+		#0.0,
+		#0.3,
+		#Tween.TRANS_LINEAR,
+		#Tween.EASE_OUT,
+		##Tempo de delay do tween
+		#0.7 
+	#)
+	#
+	#tween.play()
+	##await(tween, "tween_all_completed")
+	#queue_free()
 
 func _process(delta: float) -> void:
 	velocity += gravity * mass * delta

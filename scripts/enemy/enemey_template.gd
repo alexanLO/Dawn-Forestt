@@ -4,6 +4,7 @@ class_name EnemyTemplate
 @export var texture: Sprite2D
 @export var floor_ray: RayCast2D
 @export var animation: AnimationPlayer
+@export var floating_text: PackedScene
 
 var can_die: bool = false
 var can_hit: bool = false
@@ -113,3 +114,15 @@ func spawn_physic_item(key: String, item_texture: CompressedTexture2D, item_info
 	#por isso instanciamos a posição do item onde o inimigo morreu.
 	item.global_position = global_position
 	item.update_item_info(key, item_texture, item_info)
+
+#==================== TextPopup ====================
+
+func spawn_floating_text(type_sign: String, type: String, value: int) -> void:
+	var text: FloatingText = floating_text.instantiate()
+	text.global_position = global_position
+	
+	text.type = type
+	text.type_sign = type_sign
+	text.value = value
+	
+	get_tree().root.call_deferred("add_child", text)

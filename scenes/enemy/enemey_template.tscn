@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://7clhhx0ckllp"]
+[gd_scene load_steps=7 format=3 uid="uid://7clhhx0ckllp"]
 
 [ext_resource type="Script" path="res://scripts/enemy/detection_area.gd" id="1_mcjuq"]
 [ext_resource type="Script" path="res://scripts/enemy/enemey_template.gd" id="1_s8kc7"]
 [ext_resource type="Script" path="res://scripts/enemy/texture.gd" id="2_8ru7j"]
+[ext_resource type="PackedScene" uid="uid://ckqaoekt52g2j" path="res://scenes/env/floating_text.tscn" id="2_lke1i"]
 [ext_resource type="Script" path="res://scripts/enemy/collision_area.gd" id="4_kpkhk"]
 [ext_resource type="Script" path="res://scripts/enemy/enemy_attack_area.gd" id="5_wwpsr"]
 
@@ -12,6 +13,7 @@ script = ExtResource("1_s8kc7")
 texture = NodePath("Texture")
 floor_ray = NodePath("FloorRay")
 animation = NodePath("Animation")
+floating_text = ExtResource("2_lke1i")
 
 [node name="Texture" type="Sprite2D" parent="." node_paths=PackedStringArray("animation", "enemy", "attack_area_collision")]
 script = ExtResource("2_8ru7j")
