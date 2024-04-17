@@ -611,7 +611,6 @@ one_shot = true
 collision_mask = 3
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-visible = false
 light_mask = 4
 visibility_layer = 8
 position = Vector2(-1, 12.5)
