@@ -90,7 +90,8 @@ func spawn_item_probability() -> void:
 		drop_bonus = 3
 	
 	#Teste
-	print("Multiplicador de drop: " + str(drop_bonus))
+	#print("Multiplicador de drop: " + str(drop_bonus))
+	
 	for key in drop_list.keys():
 		var rng: int = randi() % 100 + 1
 		if rng <= drop_list[key][1] * drop_bonus:

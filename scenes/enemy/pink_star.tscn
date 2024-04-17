@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dk53w66nqah44"]
+
+[ext_resource type="PackedScene" uid="uid://7clhhx0ckllp" path="res://scenes/enemy/enemey_template.tscn" id="1_1hwh8"]
+[ext_resource type="Script" path="res://scripts/enemy/pink_star/pink_star.gd" id="2_22f7d"]
+
+[node name="PinkStar" instance=ExtResource("1_1hwh8")]
+script = ExtResource("2_22f7d")
+speed = 70
+gravity_speed = 250
+proximity_threshould = 10
