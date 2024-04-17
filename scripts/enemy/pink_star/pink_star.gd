@@ -23,39 +23,41 @@ func _ready() -> void:
 		
 		"Pink Star Mouth": [
 			"res://assets/item/resource/pink_star/pink_star_mouth.png",
-			10,
+			47,
 			"Resource",
 			{}, 
-			7
+			5
 		],
 		
 		"Pink Star Belt": [
 			"res://assets/item/equipment/pink_star_belt.png",
-			35,
+			3,
 			"Equipament",
-			{},
-			3
+			{
+				"Health": 5,
+				"Mana": 5
+			},
+			40
 		],
 		
 		"Pink Star Bow": [
 			"res://assets/item/equipment/pink_star_bow.png",
-			5,
-			"Equipament",
+			1,
+			"Weapon",
 			{
-				"Health": 3,
-				"Attack": 1
+				"Attack": 5
 				},
-			30
+			60
 		],
 		
 		"Pink Star Shield": [
 			"res://assets/item/equipment/pink_star_shield.png",
-			2,
+			1,
 			"Weapon",
 			{
-				"Attack": 3,
-				"Defense": 1
+				"Health": 3,
+				"Defense": 2
 				},
-			40
+			75
 		]
 	}
