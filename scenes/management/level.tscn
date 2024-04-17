@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://41k2bx0ri721"]
+[gd_scene load_steps=12 format=3 uid="uid://41k2bx0ri721"]
 
 [ext_resource type="TileSet" uid="uid://bbgkl65auumop" path="res://resources/floor.tres" id="1"]
 [ext_resource type="TileSet" uid="uid://db6bnhmc4vptf" path="res://resources/normal_decorations.tres" id="3_8wmnx"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dbb402qqm0cdi" path="res://scenes/enemy/crabby.tscn" id="8_5l2ei"]
 [ext_resource type="PackedScene" uid="uid://by1v0fynwx2sq" path="res://scenes/interface/general/hud.tscn" id="8_ele5q"]
 [ext_resource type="TileSet" uid="uid://bfq0mdrbohxhf" path="res://resources/small_decorations.tres" id="9_ke2td"]
+[ext_resource type="PackedScene" uid="uid://dk53w66nqah44" path="res://scenes/enemy/pink_star.tscn" id="9_rp5dr"]
 
 [sub_resource type="Environment" id="1"]
 background_mode = 4
@@ -57,15 +58,12 @@ position = Vector2(30, 145)
 [node name="Enemy" type="Node2D" parent="."]
 
 [node name="Crabby" parent="Enemy" instance=ExtResource("8_5l2ei")]
-position = Vector2(1431, 98)
+position = Vector2(1461, 103)
 
 [node name="Whale" parent="Enemy" instance=ExtResource("7_vmj5u")]
-position = Vector2(1654, 95)
+position = Vector2(237, 157)
 
-[node name="Crabby2" parent="Enemy" instance=ExtResource("8_5l2ei")]
-position = Vector2(776, 336)
-
-[node name="Whale2" parent="Enemy" instance=ExtResource("7_vmj5u")]
-position = Vector2(244, 157)
+[node name="PinkStar" parent="Enemy" instance=ExtResource("9_rp5dr")]
+position = Vector2(877, 339)
 
 [node name="Hud" parent="." instance=ExtResource("8_ele5q")]
