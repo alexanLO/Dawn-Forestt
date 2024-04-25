@@ -22,8 +22,8 @@ func spawn_enemy() -> void:
 	var random_number: int = randi() % 100 + 1
 	for enemy in enemies_list:
 		if enemy[2] <= random_number and enemy[3] >= random_number:
-			var enemy_instance = load(enemy[0]).instance()
-			enemy_instance.connect("kill", self, "on_enemy_killed")
+			var enemy_instance = load(enemy[0]).instantiate()
+			enemy_instance.connect("kill", Callable(self, "on_enemy_killed"))
 			enemy_instance.global_position = Vector2(spawn_posiiton(), enemy[1])
 			add_child(enemy_instance)
 		

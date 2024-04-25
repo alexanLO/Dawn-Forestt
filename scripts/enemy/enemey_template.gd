@@ -6,6 +6,8 @@ class_name EnemyTemplate
 @export var animation: AnimationPlayer
 @export var floating_text: PackedScene
 
+signal kill
+
 var can_die: bool = false
 var can_hit: bool = false
 var can_attack: bool = false
@@ -15,11 +17,13 @@ var drop_list: Dictionary
 var drop_bonus: int = 1
 var attack_animation_sufflix: String = "_left"
 
+
 @export var speed: int
 @export var gravity_speed: int
 #Limite de qquando ele vai alcançar o player para atacar.
 @export var proximity_threshould: int 
 @export var raycast_default_position: int
+@export var enemy_exp: int
 
 
 func _physics_process(delta: float) -> void:
@@ -75,7 +79,9 @@ func floor_collision() -> bool:
 	return false
 
 func kill_enemy() -> void:
+	emit_signal("kill")
 	animation.play("kill")
+	get_tree().call_group("stats", "update_exp", enemy_exp)
 	spawn_item_probability()
 
 #==================== Drop Item ====================
