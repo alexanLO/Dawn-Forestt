@@ -2,7 +2,6 @@ extends Label
 class_name FloatingText
 
 
-var tween: Tween = create_tween()
 
 var mass: int = 20
 var value: int 
@@ -46,6 +45,8 @@ func floatint_text() -> void:
 	#interpolate()
 #
 #func interpolate() -> void:
+	#var tween: Tween = create_tween()	
+	
 	##Surge o objeto
 	#tween.interpolate_property(
 		#self,
