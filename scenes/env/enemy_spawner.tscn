@@ -2,8 +2,12 @@
 
 [ext_resource type="Script" path="res://scripts/env/enemy_spawn.gd" id="1_crde4"]
 
-[node name="EnemySpawner" type="Node2D"]
+[node name="EnemySpawner" type="Node2D" node_paths=PackedStringArray("spawn_timer")]
 script = ExtResource("1_crde4")
+spawn_timer = NodePath("SpawnTimer")
+enemies_list = Array[Array]([[null, null, null, null], [null, null, null, null], [null, null, null, null]])
 
 [node name="SpawnTimer" type="Timer" parent="."]
 one_shot = true
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timeout"]
