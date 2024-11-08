@@ -1,0 +1,59 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6d7huwf37qi6"]
+
+[ext_resource type="Texture2D" uid="uid://cwqw6n1kd5fx2" path="res://assets/interface/intentory/inventory_text_background.png" id="1_l6sge"]
+[ext_resource type="Texture2D" uid="uid://ca10x35kfy0ni" path="res://assets/interface/intentory/inventory_text.png" id="2_3a411"]
+[ext_resource type="Texture2D" uid="uid://b0cuhe0jcxxrd" path="res://assets/interface/intentory/inventory_background.png" id="3_ic2cv"]
+
+[node name="InventoryContainer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -58.5
+offset_right = 128.0
+offset_bottom = 58.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HContainer" type="HBoxContainer" parent="VContainer"]
+custom_minimum_size = Vector2(256, 17)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Margin" type="Control" parent="VContainer/HContainer"]
+custom_minimum_size = Vector2(73, 0)
+layout_mode = 2
+
+[node name="TextBackground" type="TextureRect" parent="VContainer/HContainer"]
+layout_mode = 2
+texture = ExtResource("1_l6sge")
+
+[node name="Text" type="TextureRect" parent="VContainer/HContainer/TextBackground"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.5
+offset_top = -5.5
+offset_right = 27.5
+offset_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_3a411")
+
+[node name="Background" type="TextureRect" parent="VContainer"]
+layout_mode = 2
+texture = ExtResource("3_ic2cv")
