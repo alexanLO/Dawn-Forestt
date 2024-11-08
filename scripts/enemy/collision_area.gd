@@ -3,10 +3,13 @@ class_name CollisionArea
 
 @export var timer: Timer
 @export var enemy: EnemyTemplate
+@export var enemy_bar: EnemyHealthBar
 
 @export var health: int
 @export var invunerability_timer: float
 
+func _ready() -> void:
+	enemy_bar.init_bar(health)
 
 func _on_collision_area_entered(area):
 	if area.get_parent() is Player:
@@ -23,6 +26,7 @@ func _on_timer_timeout():
 
 func update_health(damage: int) -> void:
 	health -= damage
+	enemy_bar.update_bar(health)
 	enemy.spawn_floating_text("-", "Damage", damage)
 	if health <= 0:
 		enemy.can_die = true

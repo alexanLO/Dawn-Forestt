@@ -585,3 +585,10 @@ invencibility_timer = 1.2
 [node name="Collision" parent="EnemyAttackArea" index="0"]
 shape = SubResource("RectangleShape2D_i3fiw")
 disabled = true
+
+[node name="EnemyBar" parent="." index="7"]
+offset_left = -17.0
+offset_top = -25.0
+offset_right = 23.0
+offset_bottom = 15.0
+scale = Vector2(0.5, 0.5)

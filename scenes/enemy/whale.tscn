@@ -482,3 +482,7 @@ invencibility_timer = 1.0
 position = Vector2(1.42857, 3.57142)
 shape = SubResource("RectangleShape2D_7pwxs")
 disabled = true
+
+[node name="EnemyBar" parent="." index="7"]
+offset_top = -46.0
+offset_bottom = -6.0
