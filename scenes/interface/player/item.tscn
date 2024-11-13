@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6ywdawicnnvu"]
+
+[ext_resource type="Texture2D" uid="uid://c8jngajyq3w8x" path="res://assets/item/consumable/health_potion.png" id="1_d8f5s"]
+[ext_resource type="Texture2D" uid="uid://d2ymtaeaa5gjv" path="res://assets/interface/intentory/item_background/type_1.png" id="1_tsorh"]
+
+[node name="Item" type="TextureRect"]
+custom_minimum_size = Vector2(20, 20)
+offset_right = 20.0
+offset_bottom = 20.0
+texture = ExtResource("1_tsorh")
+
+[node name="Texture" type="TextureRect" parent="."]
+visible = false
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_d8f5s")
+expand_mode = 3
+
+[node name="Amount" type="Label" parent="."]
+visible = false
+custom_minimum_size = Vector2(4, 7)
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 12.0
+offset_bottom = 25.0
+text = "9"
+horizontal_alignment = 2

@@ -3,3 +3,4 @@
 
 ### ERROS QUE TEM QUE RESOLVER:
 - quando o monstro morre ele não dropa mais de 1 item
+- a quantidade de itens no inventario não está ficando no tamanho certo
