@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6d7huwf37qi6"]
+[gd_scene load_steps=6 format=3 uid="uid://c6d7huwf37qi6"]
 
 [ext_resource type="Texture2D" uid="uid://cwqw6n1kd5fx2" path="res://assets/interface/intentory/inventory_text_background.png" id="1_dhhx4"]
+[ext_resource type="Script" path="res://scripts/interface/player/inventory.gd" id="1_hfsor"]
 [ext_resource type="Texture2D" uid="uid://ca10x35kfy0ni" path="res://assets/interface/intentory/inventory_text.png" id="2_wf33j"]
 [ext_resource type="Texture2D" uid="uid://b0cuhe0jcxxrd" path="res://assets/interface/intentory/inventory_background.png" id="3_ej2d0"]
 [ext_resource type="PackedScene" uid="uid://b6ywdawicnnvu" path="res://scenes/interface/player/item.tscn" id="4_k6amk"]
@@ -12,6 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_hfsor")
 
 [node name="VContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
