@@ -53,7 +53,20 @@ func update_slot(item_name: String, item_image: CompressedTexture2D, item_info: 
 			item_slot.update_item(item_name, item_image, item_info)
 			return
 			
-		
+	var aux_item_index: int = slot_list.rfind(item_name)
+	if aux_item_index != -1:
+		var item_slot: TextureRect = slot_container.get_child(aux_item_index)
+		if item_slot.amount < item_quantity and item_slot.item_type != "Equipament" and item_slot.item_type != "Weapon":
+			item_slot.update_item(item_name, item_image, item_info)
+			return
+			
+	for index in slot_container.get_child_count():
+		var slot: TextureRect = slot_container.get_child(index)
+		if slot.item_name == "":
+			slot_list[index] = item_name
+			slot_item_info[index] = [item_name, item_image, item_info]
+			slot.update_item(item_name, item_image, item_info)
+			return
 	
 
 func empty_slot(index: int) -> void:
