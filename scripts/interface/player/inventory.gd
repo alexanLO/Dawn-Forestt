@@ -11,7 +11,7 @@ var current_state: String
 #Ou então nós só vamos poder clicar se a gente vê dentro do slot de algum dos itens e aqueles lotes tiver
 #um item, entre outras coisas.
 var can_click: bool
-var is_visible: bool
+#var is_visible: bool
 
 var item_index: int
 var item_quantity: int = 99
