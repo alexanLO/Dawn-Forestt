@@ -87,7 +87,7 @@ func kill_enemy() -> void:
 #==================== Drop Item ====================
 
 func spawn_item_probability() -> void:
-	var random_number: int = randi() % 21 #Dado falso
+	var random_number: int = randi() % 21
 	if random_number <= 6:
 		drop_bonus = 1
 	elif random_number >= 7 and random_number <= 13:
@@ -95,14 +95,10 @@ func spawn_item_probability() -> void:
 	else:
 		drop_bonus = 3
 	
-	#Teste
-	#print("Multiplicador de drop: " + str(drop_bonus))
-	
 	for key in drop_list.keys():
 		var rng: int = randi() % 100 + 1
 		if rng <= drop_list[key][1] * drop_bonus:
 			var item_texture: CompressedTexture2D = load(drop_list[key][0])
-			
 			var item_info: Array = [
 				drop_list[key][0], 
 				drop_list[key][2], 

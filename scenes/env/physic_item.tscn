@@ -9,10 +9,9 @@ radius = 8.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_aidp1"]
 radius = 16.0
 
-[node name="PhysicItem" type="RigidBody2D" node_paths=PackedStringArray("sprite")]
+[node name="PhysicItem" type="RigidBody2D"]
 collision_layer = 0
 script = ExtResource("1_kcxvj")
-sprite = NodePath("Texture")
 
 [node name="Texture" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)

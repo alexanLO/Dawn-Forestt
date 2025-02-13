@@ -1,7 +1,7 @@
 extends RigidBody2D
 class_name PhysicItem
 
-@export var sprite: Sprite2D
+@onready var sprite: Sprite2D = $Texture
 #Aqui foi usado o preload porque o efeito vai carregar antes do objeto estiver rodando.
 const COLLECT_EFFECT: PackedScene = preload("res://scenes/effect/general_effects/collect_item.tscn")
 
@@ -18,10 +18,9 @@ func _ready() -> void:
 
 func apply_random_impulse() -> void:
 	apply_impulse(
-		Vector2.ZERO,
 		Vector2(
-			randi_range(-60, 60), #Raio que vai da direita ate a esquerda de onde o item ira voar. 
-			-90 #Força que o item vai voar para cima.
+			randi_range(-30, 30), #Raio que vai da direita ate a esquerda de onde o item ira voar. 
+			-300 #Força que o item vai voar para cima.
 		)
 	)
 
@@ -49,16 +48,16 @@ func _on_screen_exited():
 	queue_free()
 
 #Envia o item
-func _on_body_entered(body):
+func _on_body_entered(body: Player):
 	player_ref = body
 
 #Esse sinal só é util se você quiser que o player aperte um botão para poder coletar o item, caso o contrario não precisa dele.
-func _on_body_exited(_body):
+func _on_body_exited(_body: Player):
 	player_ref = null
 
 #=================================================
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if player_ref != null and Input.is_action_just_pressed("interect"):
 		#Emitir sinal para enviar item para inventario
 		spawn_effect()

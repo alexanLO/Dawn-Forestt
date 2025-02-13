@@ -42,3 +42,53 @@ func _on_mouse_exited() -> void:
 	can_click = false
 	modulate.a = 1.0
 	pass # Replace with function body.
+
+func update_item(item: String, item_image: TextureRect, item_info: Array) -> void:
+	item_image_path = item_info[0]
+	item_type = item_info[1]
+	
+	match  item_type:
+		"Equipament":
+			amount = 1
+			item_dictionary = item_info[2]
+			
+		"Weapon":
+			amount = 1
+			item_dictionary = item_info[2]
+
+		"Resource":
+			amount += item_info[4]
+			type_value = item_info[2]
+
+		"Health":
+			amount += item_info[5]
+			type_value -= item_info[2]
+
+		"Mana":
+			amount += item_info[5]
+			type_value -= item_info[2]
+		
+	sell_price = item_info[3]
+	item_name = item
+	item_amount.text = str(amount)
+	item_texture = item_image
+	
+	if amount != 0 and item_type != "Equipament" and item_type != "Weapon":
+		item_amount.show()
+		item_texture.show()
+		return
+		
+	if item_type == "Equipament" and item_type == "Weapon":
+		item_texture.show()
+		return
+
+func update_slot() -> void:
+	item_amount.hide()
+	item_texture.hide()
+	
+	amount = 0
+	item_name = ""
+	item_type = ""
+	type_value = 0
+	sell_price = 0
+	item_image_path = ""
