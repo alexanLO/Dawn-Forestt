@@ -1,7 +1,7 @@
 extends Control
 class_name Inventory
 
-@export var slot_container: GridContainer
+@onready var slot_container: GridContainer = $VContainer/Background/GridContainer
 
 var current_state: String
 

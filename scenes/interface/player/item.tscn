@@ -1,13 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://b6ywdawicnnvu"]
+[gd_scene load_steps=4 format=3 uid="uid://b6ywdawicnnvu"]
 
 [ext_resource type="Texture2D" uid="uid://c8jngajyq3w8x" path="res://assets/item/consumable/health_potion.png" id="1_d8f5s"]
 [ext_resource type="Texture2D" uid="uid://d2ymtaeaa5gjv" path="res://assets/interface/intentory/item_background/type_1.png" id="1_tsorh"]
+[ext_resource type="Script" path="res://scripts/interface/player/item.gd" id="2_8ebhc"]
 
 [node name="Item" type="TextureRect"]
 custom_minimum_size = Vector2(20, 20)
 offset_right = 20.0
 offset_bottom = 20.0
 texture = ExtResource("1_tsorh")
+script = ExtResource("2_8ebhc")
 
 [node name="Texture" type="TextureRect" parent="."]
 visible = false
@@ -37,3 +39,6 @@ offset_right = 12.0
 offset_bottom = 25.0
 text = "9"
 horizontal_alignment = 2
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
