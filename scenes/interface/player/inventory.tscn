@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c6d7huwf37qi6"]
+[gd_scene load_steps=10 format=3 uid="uid://c6d7huwf37qi6"]
 
 [ext_resource type="Texture2D" uid="uid://cwqw6n1kd5fx2" path="res://assets/interface/intentory/inventory_text_background.png" id="1_dhhx4"]
 [ext_resource type="Script" path="res://scripts/interface/player/inventory.gd" id="1_hfsor"]
@@ -6,7 +6,99 @@
 [ext_resource type="Texture2D" uid="uid://b0cuhe0jcxxrd" path="res://assets/interface/intentory/inventory_background.png" id="3_ej2d0"]
 [ext_resource type="PackedScene" uid="uid://b6ywdawicnnvu" path="res://scenes/interface/player/item.tscn" id="4_k6amk"]
 
-[node name="InventoryContainer" type="Control"]
+[sub_resource type="Animation" id="Animation_bh0js"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hqi7t"]
+resource_name = "hide_container"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_p55kt"]
+resource_name = "show_container"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g7dce"]
+_data = {
+"RESET": SubResource("Animation_bh0js"),
+"hide_container": SubResource("Animation_hqi7t"),
+"show_container": SubResource("Animation_p55kt")
+}
+
+[node name="InventoryContainer" type="Control" groups=["inventory"]]
+visible = false
+modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -157,3 +249,13 @@ layout_mode = 2
 
 [node name="Item27" parent="VContainer/Background/GridContainer" instance=ExtResource("4_k6amk")]
 layout_mode = 2
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_g7dce")
+}
+
+[node name="VContainer2" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

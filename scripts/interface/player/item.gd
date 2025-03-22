@@ -2,7 +2,7 @@ extends TextureRect
 class_name InterfaceItem
 
 signal empty_slot
-#signal item clicked
+signal item_clicked
 
 @onready var item_texture: TextureRect = $Texture
 @onready var item_amount: Label = $Amount
@@ -48,37 +48,29 @@ func update_item(item: String, item_image: TextureRect, item_info: Array) -> voi
 	item_type = item_info[1]
 	
 	match  item_type:
-		"Equipament":
+		"Equipment", "Weapon":
 			amount = 1
 			item_dictionary = item_info[2]
 			
-		"Weapon":
-			amount = 1
-			item_dictionary = item_info[2]
-
 		"Resource":
 			amount += item_info[4]
-			type_value = item_info[2]
-
-		"Health":
-			amount += item_info[5]
-			type_value -= item_info[2]
-
-		"Mana":
-			amount += item_info[5]
+			type_value = 0
+			
+		"Health", "Mana":
+			amount += item_info[4]
 			type_value -= item_info[2]
 		
 	sell_price = item_info[3]
 	item_name = item
 	item_amount.text = str(amount)
 	item_texture = item_image
-	
-	if amount != 0 and item_type != "Equipament" and item_type != "Weapon":
-		item_amount.show()
+	if amount != 0:
 		item_texture.show()
-		return
+	if item_type != "Equipment" and item_type != "Weapon":
+		item_amount.text = str(amount)
+		item_amount.show()
 		
-	if item_type == "Equipament" and item_type == "Weapon":
+	if item_type == "Equipment" or item_type == "Weapon":
 		item_texture.show()
 		return
 
@@ -86,9 +78,26 @@ func update_slot() -> void:
 	item_amount.hide()
 	item_texture.hide()
 	
-	amount = 0
 	item_name = ""
 	item_type = ""
+	item_image_path = ""
+
+	amount = 0
 	type_value = 0
 	sell_price = 0
-	item_image_path = ""
+	
+	emit_signal("empty_slot", item_index)
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("click") and can_click and item_name!= "":
+		emit_signal("item_clicked", item_index)
+		modulate.a = 0.2
+		await(get_tree().create_timer(0.1)).timeout
+		modulate.a = 0.5
+
+func uodate_amount(value: int) -> void:
+	var new_amount: int = amount - value
+	item_amount.text = str(new_amount)
+	amount = new_amount
+	if new_amount == 0:
+		update_slot()
