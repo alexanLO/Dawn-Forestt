@@ -1,6 +1,8 @@
 extends TextureRect
 class_name InterfaceItem
 
+#region Variaveis
+
 signal empty_slot
 signal item_clicked
 
@@ -25,6 +27,7 @@ var texture_list: Array = [
 	"res://assets/interface/intentory/item_background/type_2.png",
 	"res://assets/interface/intentory/item_background/type_3.png"
 ]
+#endregion
 
 func _ready() -> void:
 	#Deixar a textura dos slots random
@@ -32,11 +35,16 @@ func _ready() -> void:
 	var random_index: int = randi() % texture_list.size()
 	texture = load(texture_list[random_index])
 
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("click") and can_click and item_name!= "":
+		emit_signal("item_clicked", item_index)
+		modulate.a = 0.2
+		await(get_tree().create_timer(0.1)).timeout
+		modulate.a = 0.5
 
 func _on_mouse_entered() -> void:
 	can_click = true
 	modulate.a = 0.5
-
 
 func _on_mouse_exited() -> void:
 	can_click = false
@@ -88,14 +96,7 @@ func update_slot() -> void:
 	
 	emit_signal("empty_slot", item_index)
 
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("click") and can_click and item_name!= "":
-		emit_signal("item_clicked", item_index)
-		modulate.a = 0.2
-		await(get_tree().create_timer(0.1)).timeout
-		modulate.a = 0.5
-
-func uodate_amount(value: int) -> void:
+func update_amount(value: int) -> void:
 	var new_amount: int = amount - value
 	item_amount.text = str(new_amount)
 	amount = new_amount

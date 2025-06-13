@@ -1,6 +1,8 @@
 extends Control
 class_name Inventory
 
+#region Variaveis
+
 @onready var slot_container: GridContainer = $VContainer/Background/GridContainer
 @onready var animation: AnimationPlayer = $Animation
 @onready var aux_animation: AnimationPlayer = $Animation
@@ -35,6 +37,7 @@ var slot_list: Array = [
 	"", "", "", "", "", "", "", "", "", "",
 	"", "", "", "", "", "", "", 
 ]
+#endregion
 
 func _ready() -> void:
 	for icon in aux_h_container.get_children():
